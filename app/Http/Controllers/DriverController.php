@@ -44,13 +44,7 @@ class DriverController extends Controller
      */
     public function store(Request $request)
     {
-        Driver::create([
-            'rfid_id' => $request->rfid_id,
-            'name' => $request->name,
-            'address' => $request->address,
-            'contact_number' => $request->contact_number,
-            'vehicle_type_id' => $request->vehicle_type_id
-        ]);
+        Driver::create($request->toArray());
 
         return redirect('/drivers');
     }
