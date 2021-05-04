@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Driver;
+use App\Models\DriverType;
 use App\Models\VehicleType;
 use Illuminate\Http\Request;
 
@@ -31,8 +32,11 @@ class DriverController extends Controller
     {
         $vehicle_types = VehicleType::all();
 
+        $driver_types = DriverType::all();
+
         return view('pages/drivers/form', [
-            'vehicle_types' => $vehicle_types
+            'vehicle_types' => $vehicle_types,
+            'driver_types' => $driver_types
         ]);
     }
 
@@ -70,10 +74,13 @@ class DriverController extends Controller
     {
         $vehicle_types = VehicleType::all();
 
+        $driver_types = DriverType::all();
+
         $driver = Driver::find($id);
 
         return view('pages/drivers/form', [
             'vehicle_types' => $vehicle_types,
+            'driver_types' => $driver_types,
             'driver' => $driver
         ]);
     }
