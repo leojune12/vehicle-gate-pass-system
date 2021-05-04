@@ -15,10 +15,11 @@ class Driver extends Model
      * @var array
      */
     protected $fillable = [
-        'rfid_id',
+        'rfid',
         'name',
         'address',
         'contact_number',
+        'driver_type_id',
         'vehicle_type_id'
     ];
 
@@ -30,5 +31,10 @@ class Driver extends Model
     public function vehicle_type()
     {
         return $this->belongsTo(VehicleType::class);
+    }
+
+    public function driver_type()
+    {
+        return $this->belongsTo(DriverType::class);
     }
 }
