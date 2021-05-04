@@ -28,7 +28,7 @@ class VehicleTypeController extends Controller
      */
     public function create()
     {
-        return view('pages/vehicle-types/create');
+        return view('pages/vehicle-types/form');
     }
 
     /**
@@ -67,7 +67,7 @@ class VehicleTypeController extends Controller
     {
         $vehicle_type = VehicleType::find($id);
 
-        return view('pages/vehicle-types/create', [
+        return view('pages/vehicle-types/form', [
             'vehicle_type' => $vehicle_type
         ]);
     }
