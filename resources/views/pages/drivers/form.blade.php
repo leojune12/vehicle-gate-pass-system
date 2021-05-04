@@ -26,8 +26,8 @@
                             <div class="px-4 py-5 bg-white sm:p-6">
                                 <div class="grid grid-cols-6 gap-6">
                                     <div class="col-span-6 sm:col-span-3">
-                                        <label for="rfid_id" class="block text-sm font-medium text-gray-700">RFID</label>
-                                        <input type="text" name="rfid_id" id="rfid_id" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{ isset($driver) ? $driver->rfid_id : "" }}" required>
+                                        <label for="rfid" class="block text-sm font-medium text-gray-700">RFID</label>
+                                        <input type="text" name="rfid" id="rfid" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{ isset($driver) ? $driver->rfid : "" }}" required>
                                     </div>
 
                                     <div class="col-span-6 sm:col-span-3">
@@ -55,7 +55,19 @@
                                                 </option>
                                             @endforeach
                                         </select>
-                                      </div>
+                                    </div>
+
+                                    <div class="col-span-6 sm:col-span-3">
+                                        <label for="driver_type_id" class="block text-sm font-medium text-gray-700">Driver Type</label>
+                                        <select id="driver_type_id" name="driver_type_id" autocomplete="driver_id" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                                            <option value="">Select Type</option>
+                                            @foreach ($driver_types as $driver_type)
+                                                <option value="{{ $driver_type->id }}" {{ $driver_type->id === @$driver->driver_type->id ? "selected" : "" }}>
+                                                    {{ $driver_type->driver_type }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                                 <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
