@@ -14,7 +14,7 @@ class VehicleTypeController extends Controller
      */
     public function index()
     {
-        $vehicle_types = VehicleType::paginate(10);
+        $vehicle_types = VehicleType::latest()->paginate(10);
 
         return view('pages/vehicle-types/index', [
             'vehicle_types' => $vehicle_types
