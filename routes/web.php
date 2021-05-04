@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\DriverController;
 use App\Http\Controllers\VehicleTypeController;
-use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,5 +24,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::resource('vehicle-types', VehicleTypeController::class)->middleware(['auth']);
+
+Route::resource('drivers', DriverController::class)->middleware(['auth']);
 
 require __DIR__ . '/auth.php';
