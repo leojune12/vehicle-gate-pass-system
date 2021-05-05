@@ -59,4 +59,17 @@ Route::resource('users', UserController::class)->middleware(['auth']);
 
 Route::resource('logs', LogController::class)->middleware(['auth']);
 
+Route::get('log-driver/{rfid}/{log_type}', function ($rfid, $log_type) {
+
+    $driver = Driver::where('rfid', $rfid)->first();
+
+    $log = Log::create([
+        'driver_id' => $driver->id,
+        'log_type_id' => $log_type,
+        'time' => now()
+    ]);
+
+    return $log;
+});
+
 require __DIR__ . '/auth.php';
