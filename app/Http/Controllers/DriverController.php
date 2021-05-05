@@ -6,6 +6,8 @@ use App\Models\Driver;
 use App\Models\DriverType;
 use App\Models\VehicleType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class DriverController extends Controller
 {
@@ -48,7 +50,13 @@ class DriverController extends Controller
      */
     public function store(Request $request)
     {
-        Driver::create($request->toArray());
+        Validator::make($request->all(), [
+            'rfid' => [
+                Rule::unique('drivers'),
+            ],
+        ])->validate();
+
+        Driver::create($request->all());
 
         return redirect('/drivers');
     }
@@ -94,9 +102,15 @@ class DriverController extends Controller
      */
     public function update(Request $request, $id)
     {
+        Validator::make($request->all(), [
+            'rfid' => [
+                Rule::unique('drivers')->ignore($request->id)
+            ],
+        ])->validate();
+
         $driver = Driver::find($id);
 
-        $driver->update($request->toArray());
+        $driver->update($request->all());
 
         return redirect('/drivers');
     }

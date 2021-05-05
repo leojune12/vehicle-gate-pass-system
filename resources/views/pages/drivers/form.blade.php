@@ -15,6 +15,10 @@
                         </div>
                     </div>
                     <div class="mt-5 md:mt-0 md:col-span-2">
+
+                        <!-- Validation Errors -->
+                        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+
                         <form action="/drivers{{ isset($driver) ? "/".$driver->id : "" }}" method="POST">
                             @csrf
 
@@ -27,22 +31,46 @@
                                 <div class="grid grid-cols-6 gap-6">
                                     <div class="col-span-6 sm:col-span-3">
                                         <label for="rfid" class="block text-sm font-medium text-gray-700">RFID</label>
-                                        <input type="text" name="rfid" id="rfid" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{ isset($driver) ? $driver->rfid : "" }}" required>
+                                        <input type="text" name="rfid" id="rfid" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" required
+                                        @if (old('rfid') != null)
+                                            value="{{ old('rfid') }}"
+                                        @else
+                                            value="{{ isset($driver) ? $driver->rfid :  "" }}"
+                                        @endif
+                                        >
                                     </div>
 
                                     <div class="col-span-6 sm:col-span-3">
                                         <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-                                        <input type="text" name="name" id="name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{ isset($driver) ? $driver->name : "" }}" required>
+                                        <input type="text" name="name" id="name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" required
+                                        @if (old('name') != null)
+                                            value="{{ old('name') }}"
+                                        @else
+                                            value="{{ isset($driver) ? $driver->name : "" }}"
+                                        @endif
+                                        >
                                     </div>
 
                                     <div class="col-span-6 sm:col-span-3">
                                         <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
-                                        <input type="text" name="address" id="address" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{ isset($driver) ? $driver->address : "" }}" required>
+                                        <input type="text" name="address" id="address" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" required
+                                        @if (old('address') != null)
+                                            value="{{ old('address') }}"
+                                        @else
+                                            value="{{ isset($driver) ? $driver->address : "" }}"
+                                        @endif
+                                        >
                                     </div>
 
                                     <div class="col-span-6 sm:col-span-3">
                                         <label for="contact_number" class="block text-sm font-medium text-gray-700">Contact Number</label>
-                                        <input type="text" name="contact_number" id="contact_number" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{ isset($driver) ? $driver->contact_number : "" }}" required>
+                                        <input type="text" name="contact_number" id="contact_number" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" required
+                                        @if (old('contact_number') != null)
+                                            value="{{ old('contact_number') }}"
+                                        @else
+                                            value="{{ isset($driver) ? $driver->contact_number : "" }}"
+                                        @endif
+                                        >
                                     </div>
 
                                     <div class="col-span-6 sm:col-span-3">
@@ -50,7 +78,13 @@
                                         <select id="vehicle_type_id" name="vehicle_type_id" autocomplete="driver_id" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
                                             <option value="">Select Type</option>
                                             @foreach ($vehicle_types as $vehicle_type)
-                                                <option value="{{ $vehicle_type->id }}" {{ $vehicle_type->id === @$driver->vehicle_type->id ? "selected" : "" }}>
+                                                <option value="{{ $vehicle_type->id }}"
+                                                    @if (old('vehicle_type_id') != null)
+                                                        {{ $vehicle_type->id == old('vehicle_type_id') ? "selected" : "" }}
+                                                    @else
+                                                        {{ $vehicle_type->id == @$driver->vehicle_type->id ? "selected" : "" }}
+                                                    @endif
+                                                >
                                                     {{ $vehicle_type->vehicle_type }}
                                                 </option>
                                             @endforeach
@@ -62,12 +96,22 @@
                                         <select id="driver_type_id" name="driver_type_id" autocomplete="driver_id" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
                                             <option value="">Select Type</option>
                                             @foreach ($driver_types as $driver_type)
-                                                <option value="{{ $driver_type->id }}" {{ $driver_type->id === @$driver->driver_type->id ? "selected" : "" }}>
+                                                <option value="{{ $driver_type->id }}"
+                                                    @if (old('vehicle_type_id') != null)
+                                                        {{ $driver_type->id == old('driver_type_id') ? "selected" : "" }}
+                                                    @else
+                                                        {{ $driver_type->id === @$driver->driver_type->id ? "selected" : "" }}
+                                                    @endif
+                                                    >
                                                     {{ $driver_type->driver_type }}
                                                 </option>
                                             @endforeach
                                         </select>
                                     </div>
+
+                                    @if (isset($driver))
+                                        <input type="hidden" name="id" value="{{ $driver->id }}">
+                                    @endif
                                 </div>
                             </div>
                                 <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
