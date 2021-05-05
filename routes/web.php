@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\DriverTypeController;
+use App\Http\Controllers\LogTypeController;
 use App\Http\Controllers\VehicleTypeController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,5 +30,7 @@ Route::resource('vehicle-types', VehicleTypeController::class)->middleware(['aut
 Route::resource('drivers', DriverController::class)->middleware(['auth']);
 
 Route::resource('driver-types', DriverTypeController::class)->middleware(['auth']);
+
+Route::resource('log-types', LogTypeController::class)->middleware(['auth']);
 
 require __DIR__ . '/auth.php';
