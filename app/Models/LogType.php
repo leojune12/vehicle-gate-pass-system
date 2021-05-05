@@ -17,6 +17,6 @@ class LogType extends Model
      * @var array
      */
     protected $fillable = [
-        'driver_type'
+        'log_type'
     ];
 }
