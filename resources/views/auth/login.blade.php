@@ -52,5 +52,8 @@
                 </x-button>
             </div>
         </form>
+        @if (!count(App\Models\User::all()))
+            <a href="/register" class="text-sm hover:underline float-right mt-3">No account yet? Register</a>
+        @endif
     </x-auth-card>
 </x-guest-layout>
