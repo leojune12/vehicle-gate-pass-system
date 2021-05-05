@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\DriverTypeController;
+use App\Http\Controllers\LogController;
 use App\Http\Controllers\LogTypeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VehicleTypeController;
@@ -35,5 +36,7 @@ Route::resource('driver-types', DriverTypeController::class)->middleware(['auth'
 Route::resource('log-types', LogTypeController::class)->middleware(['auth']);
 
 Route::resource('users', UserController::class)->middleware(['auth']);
+
+Route::resource('logs', LogController::class)->middleware(['auth']);
 
 require __DIR__ . '/auth.php';
