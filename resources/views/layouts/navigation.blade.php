@@ -31,6 +31,11 @@
                         {{ __('Driver Types') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link href="/log-types" :active="request()->routeIs('log-types')">
+                        {{ __('Log Types') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->
