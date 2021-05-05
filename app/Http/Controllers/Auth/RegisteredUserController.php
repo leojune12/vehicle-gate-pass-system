@@ -19,7 +19,9 @@ class RegisteredUserController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        if (count(User::all())) {
+            $this->middleware('auth');
+        }
     }
 
     /**
