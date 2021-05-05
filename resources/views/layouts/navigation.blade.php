@@ -17,13 +17,13 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="/drivers" :active="request()->routeIs('drivers')">
-                        {{ __('Drivers') }}
+                    <x-nav-link href="/users" :active="request()->routeIs('users')">
+                        {{ __('Users') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="/vehicle-types" :active="request()->routeIs('vehicle-types')">
-                        {{ __('Vehicle Types') }}
+                    <x-nav-link href="/drivers" :active="request()->routeIs('drivers')">
+                        {{ __('Drivers') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
@@ -32,13 +32,18 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="/log-types" :active="request()->routeIs('log-types')">
-                        {{ __('Log Types') }}
+                    <x-nav-link href="/vehicle-types" :active="request()->routeIs('vehicle-types')">
+                        {{ __('Vehicle Types') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="/users" :active="request()->routeIs('users')">
-                        {{ __('Users') }}
+                    <x-nav-link href="/logs" :active="request()->routeIs('logs')">
+                        {{ __('Logs') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link href="/log-types" :active="request()->routeIs('log-types')">
+                        {{ __('Log Types') }}
                     </x-nav-link>
                 </div>
             </div>
