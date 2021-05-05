@@ -3,6 +3,7 @@
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\DriverTypeController;
 use App\Http\Controllers\LogTypeController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\VehicleTypeController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/login');
 });
 
 Route::get('/dashboard', function () {
@@ -32,5 +33,7 @@ Route::resource('drivers', DriverController::class)->middleware(['auth']);
 Route::resource('driver-types', DriverTypeController::class)->middleware(['auth']);
 
 Route::resource('log-types', LogTypeController::class)->middleware(['auth']);
+
+Route::resource('users', UserController::class)->middleware(['auth']);
 
 require __DIR__ . '/auth.php';
