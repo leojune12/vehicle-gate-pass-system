@@ -6,6 +6,12 @@ use App\Http\Controllers\LogController;
 use App\Http\Controllers\LogTypeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VehicleTypeController;
+use App\Models\Driver;
+use App\Models\DriverType;
+use App\Models\Log;
+use App\Models\LogType;
+use App\Models\User;
+use App\Models\VehicleType;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,7 +30,21 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $users = count(User::all());
+    $drivers = count(Driver::all());
+    $logs = count(Log::all());
+    $driver_types = count(DriverType::all());
+    $vehicle_types = count(VehicleType::all());
+    $log_types = count(LogType::all());
+
+    return view('dashboard', [
+        'users' => $users,
+        'drivers' => $drivers,
+        'logs' => $logs,
+        'driver_types' => $driver_types,
+        'vehicle_types' => $vehicle_types,
+        'log_types' => $log_types
+    ]);
 })->middleware(['auth'])->name('dashboard');
 
 Route::resource('vehicle-types', VehicleTypeController::class)->middleware(['auth']);
