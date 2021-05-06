@@ -42,13 +42,21 @@ class LogController extends Controller
     {
         $driver = Driver::where('rfid', $rfid)->first();
 
-        $log = Log::create([
-            'driver_id' => $driver->id,
-            'log_type_id' => $log_type,
-            'time' => now()
-        ]);
+        if (isset($driver)) {
+            $log = Log::create([
+                'driver_id' => $driver->id,
+                'log_type_id' => $log_type,
+                'time' => now()
+            ]);
 
-        return $log;
+            return response()->json([
+                'status' => 'Access granted'
+            ]);
+        } else {
+            return response()->json([
+                'status' => 'Access denied'
+            ]);
+        }
     }
 
     /**
