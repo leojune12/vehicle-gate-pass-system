@@ -14,7 +14,7 @@ class LogTypeController extends Controller
      */
     public function index()
     {
-        $log_types = LogType::latest()->paginate();
+        $log_types = LogType::latest()->paginate(10);
 
         return view('pages/log-types/index', [
             'log_types' => $log_types

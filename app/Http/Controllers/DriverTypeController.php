@@ -14,7 +14,7 @@ class DriverTypeController extends Controller
      */
     public function index()
     {
-        $driver_types = DriverType::latest()->paginate();
+        $driver_types = DriverType::latest()->paginate(10);
 
         return view('pages/driver-types/index', [
             'driver_types' => $driver_types
