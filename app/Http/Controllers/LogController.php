@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Driver;
 use App\Models\Log;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class LogController extends Controller
      */
     public function index()
     {
-        $logs = Log::latest()->paginate();
+        $logs = Log::latest()->paginate(10);
 
         return view('pages/logs/index', [
             'logs' => $logs
@@ -37,9 +38,17 @@ class LogController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($rfid, $log_type)
     {
-        //
+        $driver = Driver::where('rfid', $rfid)->first();
+
+        $log = Log::create([
+            'driver_id' => $driver->id,
+            'log_type_id' => $log_type,
+            'time' => now()
+        ]);
+
+        return $log;
     }
 
     /**
