@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\DriverTypeController;
 use App\Http\Controllers\LogController;
@@ -14,51 +15,36 @@ use App\Models\User;
 use App\Models\VehicleType;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', function () {
     return redirect('/login');
 });
 
-Route::get('/dashboard', function () {
-    $users = count(User::all());
-    $drivers = count(Driver::all());
-    $logs = count(Log::all());
-    $driver_types = count(DriverType::all());
-    $vehicle_types = count(VehicleType::all());
-    $log_types = count(LogType::all());
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-    return view('dashboard', [
-        'users' => $users,
-        'drivers' => $drivers,
-        'logs' => $logs,
-        'driver_types' => $driver_types,
-        'vehicle_types' => $vehicle_types,
-        'log_types' => $log_types
-    ]);
-})->middleware(['auth'])->name('dashboard');
+    Route::resource('users', UserController::class);
 
-Route::resource('vehicle-types', VehicleTypeController::class)->middleware(['auth']);
+    Route::get('/users', [DashboardController::class, 'index'])->name('users');
 
-Route::resource('drivers', DriverController::class)->middleware(['auth']);
+    Route::resource('drivers', DriverController::class);
 
-Route::resource('driver-types', DriverTypeController::class)->middleware(['auth']);
+    Route::get('/drivers', [DashboardController::class, 'index'])->name('drivers');
 
-Route::resource('log-types', LogTypeController::class)->middleware(['auth']);
+    Route::resource('driver-types', DriverTypeController::class);
 
-Route::resource('users', UserController::class)->middleware(['auth']);
+    Route::get('/driver-types', [DashboardController::class, 'index'])->name('driver-types');
 
-Route::resource('logs', LogController::class)->middleware(['auth']);
+    Route::resource('vehicle-types', VehicleTypeController::class);
 
-Route::get('log-driver/{rfid}/{log_type}', [LogController::class, 'store']);
+    Route::get('/vehicle-types', [DashboardController::class, 'index'])->name('vehicle-types');
+
+    Route::resource('logs', LogController::class);
+
+    Route::get('/logs', [DashboardController::class, 'index'])->name('logs');
+
+    Route::resource('log-types', LogTypeController::class);
+
+    Route::get('/log-types', [DashboardController::class, 'index'])->name('log-types');
+});
 
 require __DIR__ . '/auth.php';
