@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Driver;
 use App\Models\DriverType;
+use App\Models\Log;
 use App\Models\VehicleType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -50,15 +51,7 @@ class DriverController extends Controller
      */
     public function store(Request $request)
     {
-        Validator::make($request->all(), [
-            'rfid' => [
-                Rule::unique('drivers'),
-            ],
-        ])->validate();
-
-        Driver::create($request->all());
-
-        return redirect('/drivers');
+        //
     }
 
     /**
@@ -67,9 +60,14 @@ class DriverController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Driver $driver)
     {
-        //
+        $logs = Log::where('driver_id', $driver->id)->paginate(10);
+
+        return view('pages/drivers/show-logs', [
+            'driver' => $driver,
+            'logs' => $logs
+        ]);
     }
 
     /**
