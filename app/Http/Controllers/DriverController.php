@@ -51,7 +51,15 @@ class DriverController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Validator::make($request->all(), [
+            'rfid' => [
+                Rule::unique('drivers'),
+            ],
+        ])->validate();
+
+        Driver::create($request->all());
+
+        return redirect('/drivers');
     }
 
     /**
