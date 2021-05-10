@@ -10,7 +10,7 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="grid grid-cols-3 gap-4">
+            <div class="grid md:grid-cols-3 grid-cols-1 gap-4">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg flex justify-between p-6 border-b border-gray-200">
                     <div class="flex flex-col">
                         <a href="/users" class="font-bold hover:underline text-gray-500">Users</a>
@@ -75,6 +75,17 @@
                     <div class="text-blue-600 flex items-center">
                         <svg style="width:48px;height:48px" viewBox="0 0 24 24">
                             <path fill="currentColor" d="M14,12H15.5V14.82L17.94,16.23L17.19,17.53L14,15.69V12M4,2H18A2,2 0 0,1 20,4V10.1C21.24,11.36 22,13.09 22,15A7,7 0 0,1 15,22C13.09,22 11.36,21.24 10.1,20H4A2,2 0 0,1 2,18V4A2,2 0 0,1 4,2M4,15V18H8.67C8.24,17.09 8,16.07 8,15H4M4,8H10V5H4V8M18,8V5H12V8H18M4,13H8.29C8.63,11.85 9.26,10.82 10.1,10H4V13M15,10.15A4.85,4.85 0 0,0 10.15,15C10.15,17.68 12.32,19.85 15,19.85A4.85,4.85 0 0,0 19.85,15C19.85,12.32 17.68,10.15 15,10.15Z" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg flex justify-between p-6 border-b border-gray-200">
+                    <div class="flex flex-col">
+                        <a href="/courses" class="font-bold hover:underline text-gray-500">Courses</a>
+                        <span class="font font-black text-3xl text-gray-700">{{ $courses }}</span>
+                    </div>
+                    <div class="text-blue-600 flex items-center">
+                        <svg style="width:48px;height:48px" viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M12,3L1,9L12,15L21,10.09V17H23V9M5,13.18V17.18L12,21L19,17.18V13.18L12,17L5,13.18Z" />
                         </svg>
                     </div>
                 </div>

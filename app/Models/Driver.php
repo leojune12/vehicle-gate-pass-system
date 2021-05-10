@@ -20,7 +20,8 @@ class Driver extends Model
         'address',
         'contact_number',
         'driver_type_id',
-        'vehicle_type_id'
+        'vehicle_type_id',
+        'course_id',
     ];
 
     // public function vehicle_type()
@@ -36,5 +37,10 @@ class Driver extends Model
     public function driver_type()
     {
         return $this->belongsTo(DriverType::class);
+    }
+
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use App\Models\Driver;
 use App\Models\DriverType;
 use App\Models\Log;
@@ -37,9 +38,12 @@ class DriverController extends Controller
 
         $driver_types = DriverType::all();
 
+        $courses = Course::all();
+
         return view('pages/drivers/form', [
             'vehicle_types' => $vehicle_types,
-            'driver_types' => $driver_types
+            'driver_types' => $driver_types,
+            'courses' => $courses
         ]);
     }
 
@@ -70,7 +74,7 @@ class DriverController extends Controller
      */
     public function show(Driver $driver)
     {
-        $logs = Log::where('driver_id', $driver->id)->paginate(10);
+        $logs = Log::where('driver_id', $driver->id)->latest()->paginate(10);
 
         return view('pages/drivers/show-logs', [
             'driver' => $driver,
@@ -90,11 +94,14 @@ class DriverController extends Controller
 
         $driver_types = DriverType::all();
 
+        $courses = Course::all();
+
         $driver = Driver::find($id);
 
         return view('pages/drivers/form', [
             'vehicle_types' => $vehicle_types,
             'driver_types' => $driver_types,
+            'courses' => $courses,
             'driver' => $driver
         ]);
     }

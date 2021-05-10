@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use App\Models\Driver;
 use App\Models\DriverType;
 use App\Models\Log;
@@ -25,6 +26,7 @@ class DashboardController extends Controller
         $driver_types = count(DriverType::all());
         $vehicle_types = count(VehicleType::all());
         $log_types = count(LogType::all());
+        $courses = count(Course::all());
 
         return view('dashboard', [
             'users' => $users,
@@ -32,7 +34,8 @@ class DashboardController extends Controller
             'logs' => $logs,
             'driver_types' => $driver_types,
             'vehicle_types' => $vehicle_types,
-            'log_types' => $log_types
+            'log_types' => $log_types,
+            'courses' => $courses
         ]);
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\DriverTypeController;
@@ -39,6 +40,10 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('log-types', LogTypeController::class);
 
     Route::get('/log-types', [LogTypeController::class, 'index'])->name('log-types');
+
+    Route::resource('courses', CourseController::class);
+
+    Route::get('/courses', [CourseController::class, 'index'])->name('courses');
 });
 
 require __DIR__ . '/auth.php';

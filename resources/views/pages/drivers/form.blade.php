@@ -112,6 +112,24 @@
                                         </select>
                                     </div>
 
+                                    <div class="col-span-6 sm:col-span-3">
+                                        <label for="course_id" class="block text-sm font-medium text-gray-700">Course</label>
+                                        <select id="courseid" name="course_id" autocomplete="driver_id" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                            <option value="">Select Course</option>
+                                            @foreach ($courses as $course)
+                                                <option value="{{ $course->id }}"
+                                                    @if (old('vehicle_type_id') != null)
+                                                        {{ $course->id == old('course_id') ? "selected" : "" }}
+                                                    @else
+                                                        {{ $course->id === @$driver->course->id ? "selected" : "" }}
+                                                    @endif
+                                                    >
+                                                    {{ $course->course }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
                                     @if (isset($driver))
                                         <input type="hidden" name="id" value="{{ $driver->id }}">
                                     @endif
