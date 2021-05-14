@@ -130,6 +130,17 @@
                                         </select>
                                     </div>
 
+                                    <div class="col-span-6 sm:col-span-3">
+                                        <label for="plate_number" class="block text-sm font-medium text-gray-700">Plate Number</label>
+                                        <input type="text" name="plate_number" id="plate_number" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" required
+                                        @if (old('plate_number') != null)
+                                            value="{{ old('plate_number') }}"
+                                        @else
+                                            value="{{ isset($driver) ? $driver->plate_number : "" }}"
+                                        @endif
+                                        >
+                                    </div>
+
                                     @if (isset($driver))
                                         <input type="hidden" name="id" value="{{ $driver->id }}">
                                     @endif
