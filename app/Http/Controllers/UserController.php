@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\UserType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -34,8 +35,11 @@ class UserController extends Controller
     {
         $user_roles = Role::all()->pluck('name');
 
+        $user_types = UserType::all();
+
         return view('pages/users/form', [
-            'user_roles' => $user_roles
+            'user_roles' => $user_roles,
+            'user_types' => $user_types
         ]);
     }
 
@@ -85,13 +89,16 @@ class UserController extends Controller
     {
         $user_roles = Role::all()->pluck('name');
 
+        $user_types = UserType::all();
+
         $user = User::find($id);
 
         $user['user_role'] = count($user->getRoleNames()) ? $user->getRoleNames()[0] : "";
         // dd($user);
         return view('pages/users/form', [
             'user' => $user,
-            'user_roles' => $user_roles
+            'user_roles' => $user_roles,
+            'user_types' => $user_types
         ]);
     }
 
@@ -118,10 +125,7 @@ class UserController extends Controller
 
         $user = User::find($id);
 
-        $user->update([
-            'name' => $request->name,
-            'email' => $request->email
-        ]);
+        $user->update($request->all());
 
         $user->syncRoles($request->user_role);
 

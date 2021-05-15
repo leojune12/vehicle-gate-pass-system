@@ -87,6 +87,24 @@
                                         </select>
                                     </div>
 
+                                    <div class="col-span-6 sm:col-span-3">
+                                        <label for="user_type_id" class="block text-sm font-medium text-gray-700">User Type</label>
+                                        <select id="user_type_id" name="user_type_id" autocomplete="driver_id" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                                            <option value="">Select Type</option>
+                                            @foreach ($user_types as $user_type)
+                                                <option value="{{ $user_type->id }}"
+                                                    @if (old('user_type_id') != null)
+                                                        {{ $user_type->id == old('user_type_id') ? "selected" : "" }}
+                                                    @else
+                                                        {{ $user_type->id == @$user->user_type->id ? "selected" : "" }}
+                                                    @endif
+                                                >
+                                                    {{ $user_type->user_type }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
                                 </div>
                             </div>
                                 <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">

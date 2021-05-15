@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'user_type_id'
     ];
 
     /**
@@ -45,5 +46,10 @@ class User extends Authenticatable
     public function logs()
     {
         return $this->hasMany(Log::class);
+    }
+
+    public function user_type()
+    {
+        return $this->belongsTo(UserType::class);
     }
 }

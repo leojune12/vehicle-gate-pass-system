@@ -69,10 +69,10 @@
                                                 {{ $driver->contact_number }}
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
-                                                {{ $driver->vehicle_type->vehicle_type }}
+                                                {{ @$driver->vehicle_type->vehicle_type }}
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
-                                                {{ $driver->driver_type->driver_type }}
+                                                {{ @$driver->driver_type->driver_type }}
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 {{ @$driver->course->course }}

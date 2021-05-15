@@ -8,6 +8,7 @@ use App\Http\Controllers\LogController;
 use App\Http\Controllers\LogTypeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserTypeController;
 use App\Http\Controllers\VehicleTypeController;
 use Illuminate\Support\Facades\Route;
 
@@ -52,6 +53,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('user-roles', RoleController::class);
 
     Route::get('/user-roles', [RoleController::class, 'index'])->name('user-roles');
+
+    Route::resource('user-types', UserTypeController::class);
+
+    Route::get('/user-types', [UserTypeController::class, 'index'])->name('user-types');
 });
 
 require __DIR__ . '/auth.php';
