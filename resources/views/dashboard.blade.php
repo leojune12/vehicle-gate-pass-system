@@ -3,9 +3,23 @@
         Dashboard
     </x-slot>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
+        <div class="flex justify-between items-center">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                {{ __('Dashboard') }}
+            </h2>
+            @role('admin')
+            <div class="flex justify-end">
+                <a href="/drivers/create" class="rounded bg-green-500 text-white px-4 py-2 hover:bg-green-600 flex items-center">
+                    <span>
+                        <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
+                        </svg>
+                    </span>
+                    <span>Add Driver</span>
+                </a>
+            </div>
+            @endrole
+        </div>
     </x-slot>
 
     <div class="py-12">
