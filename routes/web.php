@@ -15,16 +15,23 @@ Route::get('/', function () {
     return redirect('/login');
 });
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'role:admin|guest'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
-    Route::resource('users', UserController::class);
-
-    Route::get('/users', [UserController::class, 'index'])->name('users');
 
     Route::resource('drivers', DriverController::class);
 
     Route::get('/drivers', [DriverController::class, 'index'])->name('drivers');
+
+    Route::resource('logs', LogController::class);
+
+    Route::get('/logs', [LogController::class, 'index'])->name('logs');
+});
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+
+    Route::resource('users', UserController::class);
+
+    Route::get('/users', [UserController::class, 'index'])->name('users');
 
     Route::resource('driver-types', DriverTypeController::class);
 
@@ -33,10 +40,6 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('vehicle-types', VehicleTypeController::class);
 
     Route::get('/vehicle-types', [VehicleTypeController::class, 'index'])->name('vehicle-types');
-
-    Route::resource('logs', LogController::class);
-
-    Route::get('/logs', [LogController::class, 'index'])->name('logs');
 
     Route::resource('log-types', LogTypeController::class);
 
@@ -47,6 +50,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/courses', [CourseController::class, 'index'])->name('courses');
 
     Route::resource('user-roles', RoleController::class);
+
+    Route::get('/user-roles', [RoleController::class, 'index'])->name('user-roles');
 });
 
 require __DIR__ . '/auth.php';

@@ -10,6 +10,7 @@ use App\Models\LogType;
 use App\Models\User;
 use App\Models\VehicleType;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class DashboardController extends Controller
 {
@@ -21,6 +22,7 @@ class DashboardController extends Controller
     public function index()
     {
         $users = count(User::all());
+        $user_roles = count(Role::all());
         $drivers = count(Driver::all());
         $logs = count(Log::all());
         $driver_types = count(DriverType::all());
@@ -30,6 +32,7 @@ class DashboardController extends Controller
 
         return view('dashboard', [
             'users' => $users,
+            'user_roles' => $user_roles,
             'drivers' => $drivers,
             'logs' => $logs,
             'driver_types' => $driver_types,

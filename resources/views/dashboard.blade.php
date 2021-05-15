@@ -10,18 +10,8 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-3 grid-cols-1 gap-4">
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg flex justify-between p-6 border-b border-gray-200">
-                    <div class="flex flex-col">
-                        <a href="/users" class="font-bold hover:underline text-gray-500">Users</a>
-                        <span class="font font-black text-3xl text-gray-700">{{ $users }}</span>
-                    </div>
-                    <div class="text-blue-600 flex items-center">
-                        <svg style="width:48px;height:48px" viewBox="0 0 24 24">
-                            <path fill="currentColor" d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,5A3,3 0 0,1 15,8A3,3 0 0,1 12,11A3,3 0 0,1 9,8A3,3 0 0,1 12,5M17.13,17C15.92,18.85 14.11,20.24 12,20.92C9.89,20.24 8.08,18.85 6.87,17C6.53,16.5 6.24,16 6,15.47C6,13.82 8.71,12.47 12,12.47C15.29,12.47 18,13.79 18,15.47C17.76,16 17.47,16.5 17.13,17Z" />
-                        </svg>
-                    </div>
-                </div>
+            <div class="grid md:grid-cols-4 grid-cols-1 gap-4">
+                {{-- Drivers --}}
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg flex justify-between p-6 border-b border-gray-200">
                     <div class="flex flex-col">
                         <a href="/drivers" class="font-bold hover:underline text-gray-500">Drivers</a>
@@ -33,6 +23,7 @@
                         </svg>
                     </div>
                 </div>
+                {{-- Logs --}}
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg flex justify-between p-6 border-b border-gray-200">
                     <div class="flex flex-col">
                         <a href="/logs" class="font-bold hover:underline text-gray-500">Logs</a>
@@ -44,7 +35,32 @@
                         </svg>
                     </div>
                 </div>
-
+                @role('admin')
+                {{-- Users --}}
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg flex justify-between p-6 border-b border-gray-200">
+                    <div class="flex flex-col">
+                        <a href="/users" class="font-bold hover:underline text-gray-500">Users</a>
+                        <span class="font font-black text-3xl text-gray-700">{{ $users }}</span>
+                    </div>
+                    <div class="text-blue-600 flex items-center">
+                        <svg style="width:48px;height:48px" viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M16 17V19H2V17S2 13 9 13 16 17 16 17M12.5 7.5A3.5 3.5 0 1 0 9 11A3.5 3.5 0 0 0 12.5 7.5M15.94 13A5.32 5.32 0 0 1 18 17V19H22V17S22 13.37 15.94 13M15 4A3.39 3.39 0 0 0 13.07 4.59A5 5 0 0 1 13.07 10.41A3.39 3.39 0 0 0 15 11A3.5 3.5 0 0 0 15 4Z" />
+                        </svg>
+                    </div>
+                </div>
+                {{-- User Roles --}}
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg flex justify-between p-6 border-b border-gray-200">
+                    <div class="flex flex-col">
+                        <a href="/courses" class="font-bold hover:underline text-gray-500">User Roles</a>
+                        <span class="font font-black text-3xl text-gray-700">{{ $user_roles }}</span>
+                    </div>
+                    <div class="text-blue-600 flex items-center">
+                        <svg style="width:48px;height:48px" viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,5A3,3 0 0,1 15,8A3,3 0 0,1 12,11A3,3 0 0,1 9,8A3,3 0 0,1 12,5M17.13,17C15.92,18.85 14.11,20.24 12,20.92C9.89,20.24 8.08,18.85 6.87,17C6.53,16.5 6.24,16 6,15.47C6,13.82 8.71,12.47 12,12.47C15.29,12.47 18,13.79 18,15.47C17.76,16 17.47,16.5 17.13,17Z" />
+                        </svg>
+                    </div>
+                </div>
+                {{-- Driver Types --}}
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg flex justify-between p-6 border-b border-gray-200">
                     <div class="flex flex-col">
                         <a href="/driver-types" class="font-bold hover:underline text-gray-500">Driver Types</a>
@@ -56,6 +72,7 @@
                         </svg>
                     </div>
                 </div>
+                {{-- Vehicle Types --}}
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg flex justify-between p-6 border-b border-gray-200">
                     <div class="flex flex-col">
                         <a href="/vehicle-types" class="font-bold hover:underline text-gray-500">Vehicle Types</a>
@@ -67,6 +84,7 @@
                         </svg>
                     </div>
                 </div>
+                {{-- Log Types --}}
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg flex justify-between p-6 border-b border-gray-200">
                     <div class="flex flex-col">
                         <a href="/log-types" class="font-bold hover:underline text-gray-500">Log Types</a>
@@ -78,6 +96,7 @@
                         </svg>
                     </div>
                 </div>
+                {{-- Courses --}}
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg flex justify-between p-6 border-b border-gray-200">
                     <div class="flex flex-col">
                         <a href="/courses" class="font-bold hover:underline text-gray-500">Courses</a>
@@ -89,6 +108,7 @@
                         </svg>
                     </div>
                 </div>
+                @endrole
             </div>
         </div>
     </div>
