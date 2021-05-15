@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -31,7 +32,11 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('pages/users/form');
+        $user_roles = Role::all()->pluck('name');
+
+        return view('pages/users/form', [
+            'user_roles' => $user_roles
+        ]);
     }
 
     /**
@@ -48,11 +53,13 @@ class UserController extends Controller
             'password' => 'required|string|confirmed|min:8',
         ]);
 
-        User::create([
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+
+        $user->assignRole($request->user_role);
 
         return redirect('/users');
     }
@@ -76,10 +83,15 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+        $user_roles = Role::all()->pluck('name');
+
         $user = User::find($id);
 
+        $user['user_role'] = count($user->getRoleNames()) ? $user->getRoleNames()[0] : "";
+        // dd($user);
         return view('pages/users/form', [
-            'user' => $user
+            'user' => $user,
+            'user_roles' => $user_roles
         ]);
     }
 
@@ -92,14 +104,6 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // $request->validate([
-        //     'name' => 'required|string|max:255',
-        //     'email' => 'required|string|email|max:255|unique:users',
-        //     'password' => 'required|string|confirmed|min:8',
-        // ]);
-
-        // dd($request->all());
-
         Validator::make($request->all(), [
             'name' => [
                 'required',
@@ -118,6 +122,8 @@ class UserController extends Controller
             'name' => $request->name,
             'email' => $request->email
         ]);
+
+        $user->syncRoles($request->user_role);
 
         return redirect('/users');
     }

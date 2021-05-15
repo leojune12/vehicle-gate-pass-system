@@ -9,6 +9,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class RegisteredUserController extends Controller
 {
@@ -55,6 +56,16 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+
+        // Assign admin role to first user
+        if (in_array('admin', Role::all()->pluck('name')->toArray())) {
+
+            $user->assignRole('admin');
+        } else {
+            Role::create(['name' => 'admin']);
+
+            $user->assignRole('admin');
+        }
 
         event(new Registered($user));
 

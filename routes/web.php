@@ -6,6 +6,7 @@ use App\Http\Controllers\DriverController;
 use App\Http\Controllers\DriverTypeController;
 use App\Http\Controllers\LogController;
 use App\Http\Controllers\LogTypeController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VehicleTypeController;
 use Illuminate\Support\Facades\Route;
@@ -44,6 +45,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('courses', CourseController::class);
 
     Route::get('/courses', [CourseController::class, 'index'])->name('courses');
+
+    Route::resource('user-roles', RoleController::class);
 });
 
 require __DIR__ . '/auth.php';

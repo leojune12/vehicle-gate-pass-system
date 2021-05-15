@@ -65,8 +65,27 @@
                                         <input type="password" name="password_confirmation" id="password_confirmation" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" required>
                                     </div>
                                     @else
+
                                     <input type="hidden" name="id" value="{{ $user->id }}">
                                     @endif
+
+                                    <div class="col-span-6 sm:col-span-3">
+                                        <label for="user_role" class="block text-sm font-medium text-gray-700">User Role</label>
+                                        <select id="user_role" name="user_role" autocomplete="user_role" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                                            <option value="">Select Role</option>
+                                            @foreach ($user_roles as $user_role)
+                                                <option
+                                                    @if (old('user_role') != null)
+                                                        {{ $user_role == old('user_role') ? "selected" : "" }}
+                                                    @else
+                                                        {{ $user_role == @$user->user_role ? "selected" : "" }}
+                                                    @endif
+                                                >
+                                                    {{ $user_role }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
 
                                 </div>
                             </div>
