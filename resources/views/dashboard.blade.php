@@ -28,8 +28,8 @@
                 {{-- Drivers --}}
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg flex justify-between p-6 border-b border-gray-200">
                     <div class="flex flex-col">
-                        <a href="/drivers" class="font-bold hover:underline text-gray-500">Drivers</a>
-                        <span class="font font-black text-3xl text-gray-700">{{ $drivers }}</span>
+                        <a href="/drivers" class="font-medium hover:underline text-gray-500">Drivers</a>
+                        <span class="font font-semibold text-3xl text-gray-700">{{ $drivers }}</span>
                     </div>
                     <div class="text-blue-600 flex items-center">
                         <svg style="width:48px;height:48px" viewBox="0 0 24 24">
@@ -40,8 +40,8 @@
                 {{-- Logs --}}
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg flex justify-between p-6 border-b border-gray-200">
                     <div class="flex flex-col">
-                        <a href="/logs" class="font-bold hover:underline text-gray-500">Logs</a>
-                        <span class="font font-black text-3xl text-gray-700">{{ $logs }}</span>
+                        <a href="/logs" class="font-medium hover:underline text-gray-500">Logs</a>
+                        <span class="font font-semibold text-3xl text-gray-700">{{ $logs }}</span>
                     </div>
                     <div class="text-blue-600 flex items-center">
                         <svg style="width:48px;height:48px" viewBox="0 0 24 24">
@@ -53,8 +53,8 @@
                 {{-- Users --}}
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg flex justify-between p-6 border-b border-gray-200">
                     <div class="flex flex-col">
-                        <a href="/users" class="font-bold hover:underline text-gray-500">Users</a>
-                        <span class="font font-black text-3xl text-gray-700">{{ $users }}</span>
+                        <a href="/users" class="font-medium hover:underline text-gray-500">Users</a>
+                        <span class="font font-semibold text-3xl text-gray-700">{{ $users }}</span>
                     </div>
                     <div class="text-blue-600 flex items-center">
                         <svg style="width:48px;height:48px" viewBox="0 0 24 24">
@@ -65,8 +65,8 @@
                 {{-- User Roles --}}
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg flex justify-between p-6 border-b border-gray-200">
                     <div class="flex flex-col">
-                        <a href="/courses" class="font-bold hover:underline text-gray-500">User Roles</a>
-                        <span class="font font-black text-3xl text-gray-700">{{ $user_roles }}</span>
+                        <a href="/courses" class="font-medium hover:underline text-gray-500">User Roles</a>
+                        <span class="font font-semibold text-3xl text-gray-700">{{ $user_roles }}</span>
                     </div>
                     <div class="text-blue-600 flex items-center">
                         <svg style="width:48px;height:48px" viewBox="0 0 24 24">
@@ -77,8 +77,8 @@
                 {{-- Driver Types --}}
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg flex justify-between p-6 border-b border-gray-200">
                     <div class="flex flex-col">
-                        <a href="/driver-types" class="font-bold hover:underline text-gray-500">Driver Types</a>
-                        <span class="font font-black text-3xl text-gray-700">{{ $driver_types }}</span>
+                        <a href="/driver-types" class="font-medium hover:underline text-gray-500">Driver Types</a>
+                        <span class="font font-semibold text-3xl text-gray-700">{{ $driver_types }}</span>
                     </div>
                     <div class="text-blue-600 flex items-center">
                         <svg style="width:48px;height:48px" viewBox="0 0 24 24">
@@ -89,8 +89,8 @@
                 {{-- Vehicle Types --}}
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg flex justify-between p-6 border-b border-gray-200">
                     <div class="flex flex-col">
-                        <a href="/vehicle-types" class="font-bold hover:underline text-gray-500">Vehicle Types</a>
-                        <span class="font font-black text-3xl text-gray-700">{{ $vehicle_types }}</span>
+                        <a href="/vehicle-types" class="font-medium hover:underline text-gray-500">Vehicle Types</a>
+                        <span class="font font-semibold text-3xl text-gray-700">{{ $vehicle_types }}</span>
                     </div>
                     <div class="text-blue-600 flex items-center">
                         <svg style="width:48px;height:48px" viewBox="0 0 24 24">
@@ -101,8 +101,8 @@
                 {{-- Log Types --}}
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg flex justify-between p-6 border-b border-gray-200">
                     <div class="flex flex-col">
-                        <a href="/log-types" class="font-bold hover:underline text-gray-500">Log Types</a>
-                        <span class="font font-black text-3xl text-gray-700">{{ $log_types }}</span>
+                        <a href="/log-types" class="font-medium hover:underline text-gray-500">Log Types</a>
+                        <span class="font font-semibold text-3xl text-gray-700">{{ $log_types }}</span>
                     </div>
                     <div class="text-blue-600 flex items-center">
                         <svg style="width:48px;height:48px" viewBox="0 0 24 24">
@@ -113,8 +113,8 @@
                 {{-- Courses --}}
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg flex justify-between p-6 border-b border-gray-200">
                     <div class="flex flex-col">
-                        <a href="/courses" class="font-bold hover:underline text-gray-500">Courses</a>
-                        <span class="font font-black text-3xl text-gray-700">{{ $courses }}</span>
+                        <a href="/courses" class="font-medium hover:underline text-gray-500">Courses</a>
+                        <span class="font font-semibold text-3xl text-gray-700">{{ $courses }}</span>
                     </div>
                     <div class="text-blue-600 flex items-center">
                         <svg style="width:48px;height:48px" viewBox="0 0 24 24">
