@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DriverController;
@@ -57,6 +58,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('user-types', UserTypeController::class);
 
     Route::get('/user-types', [UserTypeController::class, 'index'])->name('user-types');
+
+    Route::resource('change-password', ChangePasswordController::class);
 });
 
 require __DIR__ . '/auth.php';
