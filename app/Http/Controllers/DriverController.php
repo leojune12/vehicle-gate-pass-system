@@ -122,7 +122,7 @@ class DriverController extends Controller
     {
         Validator::make($request->all(), [
             'rfid' => [
-                Rule::unique('drivers')->ignore($request->id)
+                Rule::unique('drivers')->ignore($id)
             ],
         ])->validate();
 
