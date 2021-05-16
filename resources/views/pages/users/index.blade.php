@@ -43,7 +43,14 @@
                                     @forelse ($users as $user)
                                         <tr>
                                             <td class="px-6 py-4 whitespace-nowrap">
-                                                {{ $user->name }}
+                                                <div class="flex items-center">
+                                                    <div class="flex-shrink-0 h-10 w-10">
+                                                        <img class="h-10 w-10 rounded-full object-contain bg-gray-400 border" src="/{{ $user->photo ? "storage/" . $user->photo : "anonymous.png" }}" alt="">
+                                                    </div>
+                                                    <div class="ml-4">
+                                                        {{ $user->name }}
+                                                    </div>
+                                                </div>
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 {{ $user->email }}

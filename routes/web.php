@@ -60,6 +60,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/user-types', [UserTypeController::class, 'index'])->name('user-types');
 
     Route::resource('change-password', ChangePasswordController::class);
+
+    Route::post('delete-photo/{id}', [UserController::class, 'delete_photo']);
 });
 
 require __DIR__ . '/auth.php';

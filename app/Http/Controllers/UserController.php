@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\UserType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Spatie\Permission\Models\Role;
@@ -55,12 +56,21 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|confirmed|min:8',
+            'photo' => 'nullable|image|max:2048',
         ]);
+
+        $photo_path = null;
+
+        if (isset($request->photo)) {
+            $photo_path = Storage::put('/media', $request['photo']);
+        }
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'user_type_id' => $request->user_type_id,
             'password' => Hash::make($request->password),
+            'photo' => $photo_path
         ]);
 
         $user->assignRole($request->user_role);
@@ -120,12 +130,32 @@ class UserController extends Controller
             'email' => [
                 'required',
                 Rule::unique('users')->ignore($request->id)
+            ],
+            'photo' => [
+                'nullable',
+                'image',
+                'max:2048'
             ]
         ])->validate();
 
         $user = User::find($id);
 
-        $user->update($request->all());
+        $photo_path = $user->photo;
+
+        if (isset($request->photo)) {
+            if (isset($user->photo)) {
+                Storage::delete($user->photo);
+            }
+
+            $photo_path = Storage::put('/media', $request['photo']);
+        }
+
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'user_type_id' => $request->user_type_id,
+            'photo' => $photo_path
+        ]);
 
         $user->syncRoles($request->user_role);
 
@@ -142,8 +172,23 @@ class UserController extends Controller
     {
         $user = User::find($id);
 
+        Storage::delete($user->photo);
+
         $user->delete();
 
         return redirect('/users');
+    }
+
+    public function delete_photo($id)
+    {
+        $user = User::find($id);
+
+        Storage::delete($user->photo);
+
+        $user->forceFill([
+            'photo' => null
+        ])->save();
+
+        return back();
     }
 }

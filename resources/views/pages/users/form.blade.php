@@ -22,7 +22,7 @@
                         <!-- Validation Errors -->
                         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-                        <form action="/users{{ isset($user) ? "/".$user->id : "" }}" method="POST">
+                        <form action="/users{{ isset($user) ? "/".$user->id : "" }}" method="POST" enctype="multipart/form-data">
                             @csrf
 
                             @if (isset($user))
@@ -105,6 +105,26 @@
                                         </select>
                                     </div>
 
+                                    <div class="col-span-6 sm:col-span-3">
+                                        @if(isset($user->photo))
+                                            <label for="profile-photo" class="block text-sm font-medium text-gray-700">
+                                                Photo
+                                            </label>
+                                            <div class="flex-shrink-0 h-40 w-40">
+                                                <img class="h-40 w-40 rounded-full object-contain bg-gray-400 border" src="/{{ $user->photo ? "storage/" . $user->photo : "anonymous.png" }}" alt="photo" id="profile-photo">
+                                            </div>
+                                            <button class="rounded py-1 px-3 bg-white hover:bg-gray-100 border mt-2 text-sm w-40" type="submit" form="delete-photo">
+                                                Remove Photo
+                                            </button>
+                                        @else
+                                            <label for="photo" class="block text-sm font-medium text-gray-700">
+                                                Photo
+                                            </label>
+                                            <input type="file" name="photo" id="photo" class="mt-1 text-sm"
+                                            >
+                                        @endif
+                                    </div>
+
                                 </div>
                             </div>
                                 <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
@@ -116,6 +136,9 @@
                                     </button>
                                 </div>
                             </div>
+                        </form>
+                        <form action="/delete-photo/{{ $user->id }}" method="POST" id="delete-photo">
+                            @csrf
                         </form>
                     </div>
                 </div>
