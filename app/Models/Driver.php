@@ -22,7 +22,8 @@ class Driver extends Model
         'driver_type_id',
         'vehicle_type_id',
         'course_id',
-        'plate_number'
+        'plate_number',
+        'photo'
     ];
 
     // public function vehicle_type()

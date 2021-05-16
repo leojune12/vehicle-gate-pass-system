@@ -6,8 +6,10 @@ use App\Models\Course;
 use App\Models\Driver;
 use App\Models\DriverType;
 use App\Models\Log;
+use App\Models\User;
 use App\Models\VehicleType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
@@ -64,9 +66,24 @@ class DriverController extends Controller
             'rfid' => [
                 Rule::unique('drivers'),
             ],
+            'photo' => [
+                'nullable',
+                'image',
+                'max:2048'
+            ]
         ])->validate();
 
-        Driver::create($request->all());
+        $photo_path = null;
+
+        if (isset($request->photo)) {
+            $photo_path = Storage::put('/media', $request['photo']);
+        }
+
+        $driver = Driver::create($request->except('photo'));
+
+        $driver->forceFill([
+            'photo' => $photo_path
+        ])->save();
 
         return redirect('/drivers');
     }
@@ -124,11 +141,30 @@ class DriverController extends Controller
             'rfid' => [
                 Rule::unique('drivers')->ignore($id)
             ],
+            'photo' => [
+                'nullable',
+                'image',
+                'max:2048'
+            ]
         ])->validate();
 
         $driver = Driver::find($id);
 
-        $driver->update($request->all());
+        $photo_path = $driver->photo;
+
+        if (isset($request->photo)) {
+            if (isset($driver->photo)) {
+                Storage::delete($driver->photo);
+            }
+
+            $photo_path = Storage::put('/media', $request['photo']);
+        }
+
+        $driver->update($request->except(['photo']));
+
+        $driver->forceFill([
+            'photo' => $photo_path
+        ])->save();
 
         return redirect('/drivers');
     }
@@ -143,8 +179,23 @@ class DriverController extends Controller
     {
         $driver = Driver::find($id);
 
+        Storage::delete($driver->photo);
+
         $driver->delete();
 
         return redirect('/drivers');
+    }
+
+    public function delete_photo($id)
+    {
+        $driver = Driver::find($id);
+
+        Storage::delete($driver->photo);
+
+        $driver->forceFill([
+            'photo' => null
+        ])->save();
+
+        return back();
     }
 }
