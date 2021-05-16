@@ -61,14 +61,18 @@
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 {{ @$user->user_type->user_type }}
                                             </td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium flex">
-                                                <a href="/users/{{ $user->id }}/edit" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                                                <div>&nbsp;|&nbsp;</div>
-                                                <form action="/users/{{ $user->id }}" method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="text-indigo-600 hover:text-indigo-900">Delete</button>
-                                                </form>
+                                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                                <div class="flex">
+                                                    <a href="/users/{{ $user->id }}" class="text-indigo-600 hover:text-indigo-900">Profile</a>
+                                                    <div>&nbsp;|&nbsp;</div>
+                                                    <a href="/users/{{ $user->id }}/edit" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                                    <div>&nbsp;|&nbsp;</div>
+                                                    <form action="/users/{{ $user->id }}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="text-indigo-600 hover:text-indigo-900">Delete</button>
+                                                    </form>
+                                                </div>
                                             </td>
                                         </tr>
                                     @empty

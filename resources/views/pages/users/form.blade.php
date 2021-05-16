@@ -137,7 +137,8 @@
                                 </div>
                             </div>
                         </form>
-                        <form action="/delete-photo/{{ $user->id }}" method="POST" id="delete-photo">
+                        {{-- Profile Photo --}}
+                        <form action="/delete-user-photo/{{ @$user->id }}" method="POST" id="delete-photo">
                             @csrf
                         </form>
                     </div>

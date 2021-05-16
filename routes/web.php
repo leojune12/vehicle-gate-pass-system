@@ -61,7 +61,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
     Route::resource('change-password', ChangePasswordController::class);
 
-    Route::post('delete-photo/{id}', [UserController::class, 'delete_photo']);
+    Route::post('delete-user-photo/{id}', [UserController::class, 'delete_photo']);
+
+    Route::post('delete-driver-photo/{id}', [DriverController::class, 'delete_photo']);
 });
 
 require __DIR__ . '/auth.php';
