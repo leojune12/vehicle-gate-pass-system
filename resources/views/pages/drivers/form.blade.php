@@ -140,10 +140,6 @@
                                         @endif
                                         >
                                     </div>
-
-                                    @if (isset($driver))
-                                        <input type="hidden" name="id" value="{{ $driver->id }}">
-                                    @endif
                                 </div>
                             </div>
                                 <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
