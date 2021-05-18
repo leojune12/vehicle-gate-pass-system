@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Driver;
 use App\Models\Log;
+use App\Models\LogType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class LogController extends Controller
 {
@@ -13,12 +15,21 @@ class LogController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $logs = Log::latest()->paginate(10);
+        $name = null;
+        $log_type = null;
+        $date = null;
+
+        $log_types = LogType::latest()->get();
+
+        $logs = Log::where('driver_id', 'like', '6%')->latest()->paginate(10);
+
+        // $logs = DB::table('logs')->latest()->paginate();
 
         return view('pages/logs/index', [
-            'logs' => $logs
+            'logs' => $logs,
+            'log_types' => $log_types
         ]);
     }
 

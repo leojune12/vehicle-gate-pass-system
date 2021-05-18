@@ -24,7 +24,7 @@ Route::middleware(['auth', 'role:admin|guest'])->group(function () {
 
     Route::get('/drivers', [DriverController::class, 'index'])->name('drivers');
 
-    Route::resource('logs', LogController::class);
+    // Route::resource('logs', LogController::class);
 
     Route::get('/logs', [LogController::class, 'index'])->name('logs');
 
