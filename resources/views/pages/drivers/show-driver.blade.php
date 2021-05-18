@@ -36,7 +36,7 @@
                                 Name
                             </dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                {{ $user->name }}
+                                {{ $driver->name }}
                             </dd>
                         </div>
                         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -44,7 +44,7 @@
                                 RFID
                             </dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                {{ $user->email }}
+                                {{ $driver->rfid }}
                             </dd>
                         </div>
                         <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -52,7 +52,7 @@
                                 Address
                             </dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                {{ count($user->getRoleNames()) ? $user->getRoleNames()[0] : "" }}
+                                {{ $driver->address }}
                             </dd>
                         </div>
                         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -60,7 +60,7 @@
                                 Contact Number
                             </dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                {{ @$user->user_type->user_type }}
+                                {{ $driver->contact_number }}
                             </dd>
                         </div>
                         <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -68,7 +68,7 @@
                                 Vehicle Type
                             </dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                {{ count($user->getRoleNames()) ? $user->getRoleNames()[0] : "" }}
+                                {{ @$driver->vehicle_type->vehicle_type }}
                             </dd>
                         </div>
                         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -76,7 +76,7 @@
                                 Driver Type
                             </dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                {{ @$user->user_type->user_type }}
+                                {{ @$driver->driver_type->driver_type }}
                             </dd>
                         </div>
                         <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -84,7 +84,7 @@
                                 Course
                             </dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                {{ count($user->getRoleNames()) ? $user->getRoleNames()[0] : "" }}
+                                {{ @$driver->course->course }}
                             </dd>
                         </div>
                         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -92,7 +92,7 @@
                                 Plate Number
                             </dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                {{ @$user->user_type->user_type }}
+                                {{ $driver->plate_number }}
                             </dd>
                         </div>
                     </dl>

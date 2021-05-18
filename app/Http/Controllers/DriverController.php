@@ -198,4 +198,13 @@ class DriverController extends Controller
 
         return back();
     }
+
+    public function show_driver($id)
+    {
+        $driver = Driver::find($id);
+
+        return view('pages/drivers/show-driver', [
+            'driver' => $driver
+        ]);
+    }
 }

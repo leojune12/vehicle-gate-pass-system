@@ -89,10 +89,9 @@
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                                 <div class="flex">
-                                                    <a href="/drivers/{{ $driver->id }}" class="text-indigo-600 hover:text-indigo-900"> Profile</a>
-                                                    @role('admin')
+                                                    <a href="/drivers/show-driver/{{ $driver->id }}" class="text-indigo-600 hover:text-indigo-900">Profile</a>
                                                     <div>&nbsp;|&nbsp;</div>
-                                                    <a href="/drivers/{{ $driver->id }}" class="text-indigo-600 hover:text-indigo-900"> Logs</a>
+                                                    <a href="/drivers/{{ $driver->id }}" class="text-indigo-600 hover:text-indigo-900">Logs</a>
                                                     @role('admin')
                                                     <div>&nbsp;|&nbsp;</div>
                                                     <a href="/drivers/{{ $driver->id }}/edit" class="text-indigo-600 hover:text-indigo-900">Edit</a>
