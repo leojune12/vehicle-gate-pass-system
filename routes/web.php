@@ -28,6 +28,8 @@ Route::middleware(['auth', 'role:admin|guest'])->group(function () {
 
     Route::get('/logs', [LogController::class, 'index'])->name('logs');
 
+    Route::get('/logs/filter', [LogController::class, 'filter'])->name('logs-filter');
+
     Route::get('/drivers/show-logs/{driver}', [DriverController::class, 'show']);
 
     Route::get('/drivers/show-driver/{id}', [DriverController::class, 'show_driver']);

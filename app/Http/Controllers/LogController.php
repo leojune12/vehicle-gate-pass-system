@@ -6,7 +6,6 @@ use App\Models\Driver;
 use App\Models\Log;
 use App\Models\LogType;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class LogController extends Controller
 {
@@ -17,19 +16,22 @@ class LogController extends Controller
      */
     public function index(Request $request)
     {
-        $name = null;
-        $log_type = null;
-        $date = null;
+        $name = isset($request->name) ? $request->name : '';
+        $log_type_id = isset($request->log_type_id) ? $request->log_type_id : '';
+        $date = isset($request->date) ? $request->date : '';
+
+        $ids = Driver::where('name', 'like', !empty($name) ? '%' . $name . '%' : '%%')->pluck('id');
+
+        $logs = Log::whereIn('driver_id', $ids)->where('log_type_id', 'like', '%' . !empty($log_type_id) ? '%' . $log_type_id . '%' : '%%')->where('time', 'like', !empty($date) ? '%' . $date . '%' : '%%')->latest()->paginate(10);
 
         $log_types = LogType::latest()->get();
 
-        $logs = Log::where('driver_id', 'like', '6%')->latest()->paginate(10);
-
-        // $logs = DB::table('logs')->latest()->paginate();
-
         return view('pages/logs/index', [
             'logs' => $logs,
-            'log_types' => $log_types
+            'log_types' => $log_types,
+            'name' => $name,
+            'log_type_id' => $log_type_id,
+            'date' => $date,
         ]);
     }
 
@@ -113,5 +115,18 @@ class LogController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function filter(Request $request)
+    {
+        $name = !empty($request->name) ? '&name=' . $request->name : '';
+        $log_type_id = !empty($request->log_type_id) ? '&log_type_id=' . $request->log_type_id : '';
+        $date = !empty($request->date) ? '&date=' . $request->date : '';
+
+        $meta = $name . $log_type_id . $date;
+
+        $suffix = !empty($meta) ? '?' . $meta : '';
+
+        return redirect('/logs' . $suffix);
     }
 }
