@@ -274,7 +274,7 @@
 
                                 <button type="button" x-on:click="exportLogs()" class="bg-blue-600 hover:bg-blue-700 text-white px-3 text-xs rounded-md outline-none focus:outline-none flex items-center justify-center">
                                     <svg style="width:24px;height:24px" viewBox="0 0 24 24">
-                                        <path fill="currentColor" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
+                                        <path fill="currentColor" d="M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z" />
                                     </svg>
                                     <span>Export</span>
                                 </button>
