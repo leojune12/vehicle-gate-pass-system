@@ -143,6 +143,6 @@ class LogController extends Controller
         $export->setLogTypeId($log_type_id);
         $export->setDate($date);
 
-        return Excel::download($export, 'users.xlsx');
+        return Excel::download($export, 'logs-'.date('mdY-his').'.xlsx');
     }
 }
