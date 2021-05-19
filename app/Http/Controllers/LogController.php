@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\LogsExport;
 use App\Models\Driver;
 use App\Models\Log;
 use App\Models\LogType;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class LogController extends Controller
 {
@@ -128,5 +130,19 @@ class LogController extends Controller
         $suffix = !empty($meta) ? '?' . $meta : '';
 
         return redirect('/logs' . $suffix);
+    }
+
+    public function export(Request $request)
+    {
+        $name = isset($request->name) ? $request->name : '';
+        $log_type_id = isset($request->log_type_id) ? $request->log_type_id : '';
+        $date = isset($request->date) ? $request->date : '';
+
+        $export = new LogsExport();
+        $export->setName($name);
+        $export->setLogTypeId($log_type_id);
+        $export->setDate($date);
+
+        return Excel::download($export, 'users.xlsx');
     }
 }

@@ -218,8 +218,15 @@
                             }
                         </script>
                     </div> --}}
-                    <div class="align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                        <form action="/logs/filter" method="get">
+                    {{-- <div x-data="dropdown()">
+                        <button x-on:click="open">Open</button>
+
+                        <div x-show="isOpen()" x-on:click.away="close">
+                            // Dropdown
+                        </div>
+                    </div> --}}
+                    <div class="align-middle inline-block min-w-full sm:px-6 lg:px-8" x-data="app()">
+                        <form x-bind:action="formAction" method="get" id="form">
                             <div class="grid grid-cols-6 gap-2 mb-3">
                                 <div class="flex rounded-md shadow-sm">
                                     <input type="text" name="name" id="name" class="focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-l-md" placeholder="Name" value="{{ $name }}">
@@ -258,11 +265,18 @@
                                     </span>
                                 </div>
 
-                                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-3 text-xs rounded-md outline-none focus:outline-none flex items-center justify-center">
+                                <button type="button" x-on:click="filter()" class="bg-blue-600 hover:bg-blue-700 text-white px-3 text-xs rounded-md outline-none focus:outline-none flex items-center justify-center">
                                     <svg style="width:24px;height:24px" viewBox="0 0 24 24">
                                         <path fill="currentColor" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
                                     </svg>
                                     <span>Search</span>
+                                </button>
+
+                                <button type="button" x-on:click="exportLogs()" class="bg-blue-600 hover:bg-blue-700 text-white px-3 text-xs rounded-md outline-none focus:outline-none flex items-center justify-center">
+                                    <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                                        <path fill="currentColor" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
+                                    </svg>
+                                    <span>Export</span>
                                 </button>
                             </div>
                         </form>
@@ -312,6 +326,27 @@
                             ]) }}
                         </div>
                     </div>
+                    <script>
+                        function app() {
+                            return {
+                                formAction: '',
+                                filterAction: '/logs/filter',
+                                exportAction: '/logs/export',
+                                filter() {
+                                    this.formAction = this.filterAction
+                                    setTimeout(function() {
+                                        document.getElementById("form").submit()
+                                    }, 500)
+                                },
+                                exportLogs() {
+                                    this.formAction = this.exportAction
+                                    setTimeout(function() {
+                                        document.getElementById("form").submit()
+                                    }, 500)
+                                }
+                            }
+                        }
+                    </script>
                 </div>
             </div>
         </div>
