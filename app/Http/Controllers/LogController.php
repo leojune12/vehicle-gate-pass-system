@@ -20,7 +20,8 @@ class LogController extends Controller
     {
         $name = isset($request->name) ? $request->name : '';
         $log_type_id = isset($request->log_type_id) ? $request->log_type_id : '';
-        $date = isset($request->date) ? $request->date : '';
+        $start_date = isset($request->start_date) ? $request->start_date : '';
+        $end_date = isset($request->end_date) ? $request->end_date : '';
 
         $ids = Driver::where('name', 'like', !empty($name) ? '%' . $name . '%' : '%%')->pluck('id');
 
@@ -33,7 +34,8 @@ class LogController extends Controller
             'log_types' => $log_types,
             'name' => $name,
             'log_type_id' => $log_type_id,
-            'date' => $date,
+            'start_date' => $start_date,
+            'end_date' => $end_date
         ]);
     }
 
@@ -143,6 +145,6 @@ class LogController extends Controller
         $export->setLogTypeId($log_type_id);
         $export->setDate($date);
 
-        return Excel::download($export, 'logs-'.date('mdY-his').'.xlsx');
+        return Excel::download($export, 'logs-' . date('mdY-his') . '.xlsx');
     }
 }
