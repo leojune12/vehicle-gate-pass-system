@@ -25,7 +25,7 @@ class LogController extends Controller
 
         $ids = Driver::where('name', 'like', !empty($name) ? '%' . $name . '%' : '%%')->pluck('id');
 
-        $logs = Log::whereIn('driver_id', $ids)->where('log_type_id', 'like', '%' . !empty($log_type_id) ? '%' . $log_type_id . '%' : '%%')->where('time', 'like', !empty($date) ? '%' . $date . '%' : '%%')->latest()->paginate(10);
+        $logs = Log::whereIn('driver_id', $ids)->where('log_type_id', 'like', '%' . !empty($log_type_id) ? '%' . $log_type_id . '%' : '%%')->where('time', '>', $start_date)->where('time', '<', !empty($end_date) ? $end_date : date('Y-m-d'))->latest()->paginate(10);
 
         $log_types = LogType::latest()->get();
 
@@ -125,9 +125,12 @@ class LogController extends Controller
     {
         $name = !empty($request->name) ? '&name=' . $request->name : '';
         $log_type_id = !empty($request->log_type_id) ? '&log_type_id=' . $request->log_type_id : '';
-        $date = !empty($request->date) ? '&date=' . $request->date : '';
+        // $date = !empty($request->date) ? '&date=' . $request->date : '';
+        $start_date = isset($request->start_date) ? '&start_date=' . $request->start_date : '';
+        $end_date = isset($request->end_date) ? '&end_date=' . $request->end_date : '';
 
-        $meta = $name . $log_type_id . $date;
+
+        $meta = $name . $log_type_id . $start_date . $end_date;
 
         $suffix = !empty($meta) ? '?' . $meta : '';
 
@@ -138,12 +141,14 @@ class LogController extends Controller
     {
         $name = isset($request->name) ? $request->name : '';
         $log_type_id = isset($request->log_type_id) ? $request->log_type_id : '';
-        $date = isset($request->date) ? $request->date : '';
+        $start_date = isset($request->start_date) ? $request->start_date : '';
+        $end_date = isset($request->end_date) ? $request->end_date : '';
 
         $export = new LogsExport();
         $export->setName($name);
         $export->setLogTypeId($log_type_id);
-        $export->setDate($date);
+        $export->setStartDate($start_date);
+        $export->setEndDate($end_date);
 
         return Excel::download($export, 'logs-' . date('mdY-his') . '.xlsx');
     }

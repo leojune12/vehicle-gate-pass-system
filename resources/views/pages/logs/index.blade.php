@@ -14,7 +14,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="">
                 <div class="overflow-x-auto sm:-mx-6 lg:-mx-8 py-1">
-                    <div class="align-middle inline-block min-w-full sm:px-6 lg:px-8" x-data="app()" x-init="initPicker()">
+                    <div class="align-middle inline-block min-w-full sm:px-6 lg:px-8" x-data="app()">
                         <form x-bind:action="formAction" method="get" id="form">
                             <div class="grid grid-cols-6 gap-2 mb-3">
                                 <div class="flex rounded-md shadow-sm">
@@ -46,7 +46,16 @@
                                     </span>
                                 </div>
                                 <div class="flex rounded-md shadow-sm">
-                                    <input type="text" name="start_date" id="start_date" class="focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-l-md" placeholder="Start Date" value="{{ $date }}" autocomplete="off" x-ref="start_date">
+                                    <input type="text" name="start_date" id="start_date" class="focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-l-md" placeholder="Start Date" value="{{ @$start_date }}" autocomplete="off" x-data x-init="new Pikaday({
+                                        field: $el,
+                                        format: 'YYYY MM DD',
+                                        toString(date, format) {
+                                            const day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
+                                            const month = (date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)
+                                            const year = date.getFullYear()
+                                            return `${year}-${month}-${day}`
+                                        },
+                                    })">
                                     <span class="inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
                                         <svg style="width:24px;height:24px" viewBox="0 0 24 24">
                                             <path fill="currentColor" d="M9,10V12H7V10H9M13,10V12H11V10H13M17,10V12H15V10H17M19,3A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5C3.89,21 3,20.1 3,19V5A2,2 0 0,1 5,3H6V1H8V3H16V1H18V3H19M19,19V8H5V19H19M9,14V16H7V14H9M13,14V16H11V14H13M17,14V16H15V14H17Z" />
@@ -55,7 +64,16 @@
                                 </div>
 
                                 <div class="flex rounded-md shadow-sm">
-                                    <input type="text" name="end_date" id="end_date" class="focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-l-md" placeholder="End Date" value="{{ $date }}" autocomplete="off" x-ref="end_date">
+                                    <input type="text" name="end_date" id="end_date" class="focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-l-md" placeholder="End Date" value="{{ @$end_date }}" autocomplete="off" x-data x-init="new Pikaday({
+                                        field: $el,
+                                        format: 'YYYY MM DD',
+                                        toString(date, format) {
+                                            const day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
+                                            const month = (date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)
+                                            const year = date.getFullYear()
+                                            return `${year}-${month}-${day}`
+                                        },
+                                    })">
                                     <span class="inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
                                         <svg style="width:24px;height:24px" viewBox="0 0 24 24">
                                             <path fill="currentColor" d="M9,10V12H7V10H9M13,10V12H11V10H13M17,10V12H15V10H17M19,3A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5C3.89,21 3,20.1 3,19V5A2,2 0 0,1 5,3H6V1H8V3H16V1H18V3H19M19,19V8H5V19H19M9,14V16H7V14H9M13,14V16H11V14H13M17,14V16H15V14H17Z" />
@@ -120,7 +138,8 @@
                             {{ $logs->onEachSide(5)->links('vendor.pagination.tailwind', [
                                 'name' => $name,
                                 'log_type_id' => $log_type_id,
-                                'date' => $date
+                                'start_date' => $start_date,
+                                'end_date' => $end_date,
                             ]) }}
                         </div>
                     </div>
@@ -141,44 +160,6 @@
                                     setTimeout(function() {
                                         document.getElementById("form").submit()
                                     }, 100)
-                                },
-
-                                startDate: null,
-                                endDate: null,
-
-                                startPicker: null,
-                                endPicker: null,
-                                initPicker() {
-                                    this.startPicker = new Pikaday({
-                                        field: this.$refs.start_date,
-                                        format: 'YYYY MM DD',
-                                        toString(date, format) {
-                                            // you should do formatting based on the passed format,
-                                            // but we will just return 'D/M/YYYY' for simplicity
-                                            const day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
-                                            const month = (date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)
-                                            const year = date.getFullYear()
-                                            return `${year}-${month}-${day}`
-                                        },
-                                    })
-
-                                    function asd(date) {
-                                        this.endDate = date
-                                        console.log(date)
-                                    }
-
-                                    this.endPicker = new Pikaday({
-                                        field: this.$refs.end_date,
-                                        format: 'YYYY MM DD',
-                                        toString(date, format) {
-                                            // you should do formatting based on the passed format,
-                                            // but we will just return 'D/M/YYYY' for simplicity
-                                            const day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
-                                            const month = (date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)
-                                            const year = date.getFullYear()
-                                            return `${year}-${month}-${day}`
-                                        },
-                                    })
                                 },
                             }
                         }
