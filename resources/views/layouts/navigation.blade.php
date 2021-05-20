@@ -8,6 +8,9 @@
                     <a href="{{ route('dashboard') }}">
                         <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
                     </a>
+                    <span class="font-black text-gray-800 text-lg ml-2">
+                        RFID Vehicle Gate Pass
+                    </span>
                 </div>
 
                 <!-- Navigation Links -->
@@ -23,7 +26,7 @@
                     </x-nav-link>
                 </div>
                 @endrole
-                @role('admin')
+                {{-- @role('admin')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="/user-roles" :active="request()->routeIs('user-roles')">
                         {{ __('User Roles') }}
@@ -36,13 +39,13 @@
                         {{ __('User Types') }}
                     </x-nav-link>
                 </div>
-                @endrole
+                @endrole --}}
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="/drivers" :active="request()->routeIs('drivers')">
                         {{ __('Drivers') }}
                     </x-nav-link>
                 </div>
-                @role('admin')
+                {{-- @role('admin')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="/driver-types" :active="request()->routeIs('driver-types')">
                         {{ __('Driver Types') }}
@@ -55,7 +58,7 @@
                         {{ __('Vehicle Types') }}
                     </x-nav-link>
                 </div>
-                @endrole
+                @endrole --}}
                 @role('admin')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="/courses" :active="request()->routeIs('courses')">
@@ -69,10 +72,54 @@
                     </x-nav-link>
                 </div>
                 @role('admin')
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="/log-types" :active="request()->routeIs('log-types')">
                         {{ __('Log Types') }}
                     </x-nav-link>
+                </div> --}}
+
+                <div class="hidden sm:flex sm:items-center sm:ml-6">
+                    <x-dropdown align="right" width="48">
+                        <x-slot name="trigger">
+                            <button class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
+                                <div>{{ __('Settings') }}</div>
+
+                                <div class="ml-1">
+                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </button>
+                        </x-slot>
+
+                        <x-slot name="content">
+                            <x-dropdown-link href="/user-roles" class="flex items-center text-gray-700">
+                                <span>
+                                    {{ __('User Roles') }}
+                                </span>
+                            </x-dropdown-link>
+                            <x-dropdown-link href="/user-types" class="flex items-center text-gray-700">
+                                <span>
+                                    {{ __('User Types') }}
+                                </span>
+                            </x-dropdown-link>
+                            <x-dropdown-link href="/driver-types" class="flex items-center text-gray-700">
+                                <span>
+                                    {{ __('Driver Types') }}
+                                </span>
+                            </x-dropdown-link>
+                            <x-dropdown-link href="/vehicle-types" class="flex items-center text-gray-700">
+                                <span>
+                                    {{ __('Vehicle Types') }}
+                                </span>
+                            </x-dropdown-link>
+                            <x-dropdown-link href="/log-types" class="flex items-center text-gray-700">
+                                <span>
+                                    {{ __('Log Types') }}
+                                </span>
+                            </x-dropdown-link>
+                        </x-slot>
+                    </x-dropdown>
                 </div>
                 @endrole
             </div>
