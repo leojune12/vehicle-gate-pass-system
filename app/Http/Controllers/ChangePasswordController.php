@@ -19,10 +19,27 @@ class ChangePasswordController extends Controller
     {
         $user = User::find($id);
 
-        $request->validate([
+        $rules = [
             'current_password' => 'required|password',
             'password' => 'required|string|min:8|confirmed',
-        ]);
+        ];
+
+        $messages = [
+            'password' => 'Your :attribute is incorrect.'
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return redirect('/change-password')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        // $request->validate([
+        //     'current_password' => 'required|password',
+        //     'password' => 'required|string|min:8|confirmed',
+        // ]);
 
         $user->forceFill([
             'password' => Hash::make($request['password']),
