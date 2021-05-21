@@ -30,7 +30,7 @@
                                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             RFID
                                         </th>
-                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        {{-- <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Address
                                         </th>
                                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -38,7 +38,7 @@
                                         </th>
                                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Vehicle Type
-                                        </th>
+                                        </th> --}}
                                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Driver Type
                                         </th>
@@ -69,7 +69,7 @@
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 {{ $driver->rfid }}
                                             </td>
-                                            <td class="px-6 py-4 whitespace-nowrap">
+                                            {{-- <td class="px-6 py-4 whitespace-nowrap">
                                                 {{ $driver->address }}
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
@@ -77,7 +77,7 @@
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 {{ @$driver->vehicle_type->vehicle_type }}
-                                            </td>
+                                            </td> --}}
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 {{ @$driver->driver_type->driver_type }}
                                             </td>
