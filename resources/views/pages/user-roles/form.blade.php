@@ -4,7 +4,7 @@
     </x-slot>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Create User Role') }}
+            {{ isset($user_role) ? __('Update User Role') : __('Create User Role') }}
         </h2>
     </x-slot>
 

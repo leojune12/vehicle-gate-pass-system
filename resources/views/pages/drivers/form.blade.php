@@ -4,7 +4,7 @@
     </x-slot>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Create Driver') }}
+            {{ isset($driver) ? __('Update Driver') : __('Create Driver') }}
         </h2>
     </x-slot>
 

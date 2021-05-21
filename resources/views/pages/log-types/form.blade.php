@@ -4,7 +4,7 @@
     </x-slot>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Create Log Type') }}
+            {{ isset($log_type) ? __('Update Log Type') : __('Create Log Type') }}
         </h2>
     </x-slot>
 
