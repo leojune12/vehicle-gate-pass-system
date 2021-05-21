@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Rels;
 use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
@@ -194,5 +195,38 @@ class UserController extends Controller
         ])->save();
 
         return back();
+    }
+
+    public function reset_password(User $user)
+    {
+        return view('pages/users/reset-password', [
+            'user' => $user
+        ]);
+    }
+
+    public function save_new_password(Request $request, User $user)
+    {
+        $rules = [
+            'password' => 'required|password',
+            'new_password' => 'required|string|min:8|confirmed',
+        ];
+
+        $messages = [
+            'password' => 'Admin :attribute is incorrect.'
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return redirect(route('password.update', $user->id))
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $user->forceFill([
+            'password' => Hash::make($request['new_password']),
+        ])->save();
+
+        return redirect('/users');
     }
 }

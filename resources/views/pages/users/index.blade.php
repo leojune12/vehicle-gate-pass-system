@@ -67,6 +67,8 @@
                                                     <div>&nbsp;|&nbsp;</div>
                                                     <a href="/users/{{ $user->id }}/edit" class="text-indigo-600 hover:text-indigo-900">Edit</a>
                                                     <div>&nbsp;|&nbsp;</div>
+                                                    <a href="/users/reset-password/{{ $user->id }}" class="text-indigo-600 hover:text-indigo-900">Reset Password</a>
+                                                    <div>&nbsp;|&nbsp;</div>
                                                     <form action="/users/{{ $user->id }}" method="POST">
                                                         @csrf
                                                         @method('DELETE')

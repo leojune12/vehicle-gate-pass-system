@@ -39,6 +39,10 @@ Route::middleware(['auth', 'role:admin|guest'])->group(function () {
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
 
+    Route::get('users/reset-password/{user}', [UserController::class, 'reset_password'])->name('password.reset');
+
+    Route::post('users/reset-password/{user}', [UserController::class, 'save_new_password'])->name('password.update');
+
     Route::resource('users', UserController::class);
 
     Route::get('/users', [UserController::class, 'index'])->name('users');
