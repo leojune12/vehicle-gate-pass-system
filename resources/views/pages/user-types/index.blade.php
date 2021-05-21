@@ -70,11 +70,23 @@
                                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium flex">
                                                 <a href="/user-types/{{ $user_type->id }}/edit" class="text-indigo-600 hover:text-indigo-900">Edit</a>
                                                 <div>&nbsp;|&nbsp;</div>
-                                                <form action="/user-types/{{ $user_type->id }}" method="POST">
+                                                <form action="/user-types/{{ $user_type->id }}" method="POST" x-data="delete_{{ $user_type->id }}()" id="form-{{ $user_type->id }}">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="text-indigo-600 hover:text-indigo-900">Delete</button>
+                                                    <button type="button" class="text-indigo-600 hover:text-indigo-900 focus:outline-none" @click="confirmDelete()">Delete</button>
                                                 </form>
+                                                <script>
+                                                    function delete_{{ $user_type->id }}() {
+                                                        return {
+                                                            show: true,
+                                                            confirmDelete() {
+                                                                if (confirm("Delete user type?")) {
+                                                                    document.getElementById('form-{{ $user_type->id }}').submit()
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                </script>
                                             </td>
                                         </tr>
                                     @empty

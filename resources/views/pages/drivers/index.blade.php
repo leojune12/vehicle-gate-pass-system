@@ -117,11 +117,23 @@
                                                     <div>&nbsp;|&nbsp;</div>
                                                     <a href="/drivers/{{ $driver->id }}/edit" class="text-indigo-600 hover:text-indigo-900">Edit</a>
                                                     <div>&nbsp;|&nbsp;</div>
-                                                    <form action="/drivers/{{ $driver->id }}" method="POST">
+                                                    <form action="/drivers/{{ $driver->id }}" method="POST" x-data="delete_{{ $driver->id }}()" id="form-{{ $driver->id }}">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="text-indigo-600 hover:text-indigo-900">Delete</button>
+                                                        <button type="button" class="text-indigo-600 hover:text-indigo-900 focus:outline-none" @click="confirmDelete()">Delete</button>
                                                     </form>
+                                                    <script>
+                                                        function delete_{{ $driver->id }}() {
+                                                            return {
+                                                                show: true,
+                                                                confirmDelete() {
+                                                                    if (confirm("Delete driver?")) {
+                                                                        document.getElementById('form-{{ $driver->id }}').submit()
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    </script>
                                                     @endrole
                                                 </div>
                                             </td>

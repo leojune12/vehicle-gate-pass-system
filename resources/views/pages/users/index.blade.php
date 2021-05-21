@@ -90,11 +90,23 @@
                                                     <div>&nbsp;|&nbsp;</div>
                                                     <a href="/users/reset-password/{{ $user->id }}" class="text-indigo-600 hover:text-indigo-900">Reset Password</a>
                                                     <div>&nbsp;|&nbsp;</div>
-                                                    <form action="/users/{{ $user->id }}" method="POST">
+                                                    <form action="/users/{{ $user->id }}" method="POST" x-data="delete_{{ $user->id }}()" id="form-{{ $user->id }}">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="text-indigo-600 hover:text-indigo-900">Delete</button>
+                                                        <button type="button" class="text-indigo-600 hover:text-indigo-900 focus:outline-none" @click="confirmDelete()">Delete</button>
                                                     </form>
+                                                    <script>
+                                                        function delete_{{ $user->id }}() {
+                                                            return {
+                                                                show: true,
+                                                                confirmDelete() {
+                                                                    if (confirm("Delete user?")) {
+                                                                        document.getElementById('form-{{ $user->id }}').submit()
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    </script>
                                                 </div>
                                             </td>
                                         </tr>

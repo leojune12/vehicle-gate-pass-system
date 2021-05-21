@@ -68,11 +68,23 @@
                                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium flex">
                                                 <a href="/driver-types/{{ $driver_type->id }}/edit" class="text-indigo-600 hover:text-indigo-900">Edit</a>
                                                 <div>&nbsp;|&nbsp;</div>
-                                                <form action="/driver-types/{{ $driver_type->id }}" method="POST">
+                                                <form action="/driver-types/{{ $driver_type->id }}" method="POST"  x-data="delete_{{ $driver_type->id }}()" id="form-{{ $driver_type->id }}">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="text-indigo-600 hover:text-indigo-900">Delete</button>
+                                                    <button type="button" class="text-indigo-600 hover:text-indigo-900 focus:outline-none" @click="confirmDelete()">Delete</button>
                                                 </form>
+                                                <script>
+                                                    function delete_{{ $driver_type->id }}() {
+                                                        return {
+                                                            show: true,
+                                                            confirmDelete() {
+                                                                if (confirm("Delete driver type?")) {
+                                                                    document.getElementById('form-{{ $driver_type->id }}').submit()
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                </script>
                                             </td>
                                         </tr>
                                     @empty
