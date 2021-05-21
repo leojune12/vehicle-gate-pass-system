@@ -14,7 +14,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses = Course::latest()->paginate();
+        $courses = Course::latest()->paginate(10);
 
         return view('pages/courses/index', [
             'courses' => $courses

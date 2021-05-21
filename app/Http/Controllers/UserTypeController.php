@@ -14,7 +14,7 @@ class UserTypeController extends Controller
      */
     public function index()
     {
-        $user_types = UserType::latest()->paginate();
+        $user_types = UserType::latest()->paginate(10);
 
         return view('pages/user-types/index', [
             'user_types' => $user_types

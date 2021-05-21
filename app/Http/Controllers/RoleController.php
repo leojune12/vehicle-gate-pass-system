@@ -16,7 +16,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $user_roles = Role::latest()->paginate();
+        $user_roles = Role::latest()->paginate(10);
 
         return view('pages/user-roles/index', [
             'user_roles' => $user_roles
