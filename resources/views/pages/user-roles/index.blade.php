@@ -3,9 +3,23 @@
         User Roles
     </x-slot>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('User Roles') }}
-        </h2>
+        <div class="flex justify-between items-center">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                {{ __('User Roles') }}
+            </h2>
+            <div class="flex justify-end">
+                <a href="/user-roles/create" class="rounded bg-green-500 text-white px-3 py-1 hover:bg-green-600 flex items-center">
+                    <span>
+                        <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
+                        </svg>
+                    </span>
+                    <span>
+                        Add User Role
+                    </span>
+                </a>
+            </div>
+        </div>
     </x-slot>
 
     <div class="py-12">
@@ -13,11 +27,20 @@
             <div class="">
                 <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                        <div class="mb-4 flex justify-end">
-                            <a href="/user-roles/create" class="rounded bg-green-500 text-white px-4 py-2 hover:bg-green-600">
-                                Add User Role
-                            </a>
+
+                        @if(session('status'))
+                        <div class="py-4 px-6 bg-green-400 rounded-md mb-3 text-white flex items-center">
+                            <span class="mr-2">
+                                <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                                    <path fill="currentColor" d="M12 2C6.5 2 2 6.5 2 12S6.5 22 12 22 22 17.5 22 12 17.5 2 12 2M12 20C7.59 20 4 16.41 4 12S7.59 4 12 4 20 7.59 20 12 16.41 20 12 20M16.59 7.58L10 14.17L7.41 11.59L6 13L10 17L18 9L16.59 7.58Z" />
+                                </svg>
+                            </span>
+                            <span>
+                                {{ session('status') }}
+                            </span>
                         </div>
+                        @endisset
+
                         <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                             <table class="min-w-full divide-y divide-gray-200">
                                 <thead class="bg-gray-50">

@@ -43,7 +43,7 @@ class UserTypeController extends Controller
             'user_type' => $request->user_type
         ]);
 
-        return redirect('/user-types');
+        return redirect('/user-types')->with('status', 'User type successfuly added');
     }
 
     /**
@@ -81,7 +81,7 @@ class UserTypeController extends Controller
     {
         $userType->update($request->all());
 
-        return redirect('/user-types');
+        return redirect('/user-types')->with('status', 'User type successfuly updated');
     }
 
     /**

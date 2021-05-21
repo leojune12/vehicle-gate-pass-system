@@ -49,7 +49,7 @@ class RoleController extends Controller
 
         Role::create(['name' => $request->name]);
 
-        return redirect('/user-roles');
+        return redirect('/user-roles')->with('status', 'User role successfuly added');
     }
 
     /**
@@ -97,7 +97,7 @@ class RoleController extends Controller
 
         $user_role->update($request->all());
 
-        return redirect('/user-roles');
+        return redirect('/user-roles')->with('status', 'User role successfuly updated');
     }
 
     /**

@@ -41,7 +41,7 @@ class LogTypeController extends Controller
     {
         LogType::create($request->toArray());
 
-        return redirect('/log-types');
+        return redirect('/log-types')->with('status', 'Log type successfuly added');
     }
 
     /**
@@ -83,7 +83,7 @@ class LogTypeController extends Controller
 
         $log_type->update($request->toArray());
 
-        return redirect('/log-types');
+        return redirect('/log-types')->with('status', 'Log type successfuly updated');
     }
 
     /**

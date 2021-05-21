@@ -45,6 +45,6 @@ class ChangePasswordController extends Controller
             'password' => Hash::make($request['password']),
         ])->save();
 
-        return redirect('/dashboard');
+        return redirect('/dashboard')->with('status', 'Password successfuly changed');
     }
 }

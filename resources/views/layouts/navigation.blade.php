@@ -5,12 +5,12 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('dashboard') }}" class="flex items-center">
                         <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
+                        <span class="font-black text-gray-800 text-lg ml-2">
+                            RFID Vehicle Gate Pass
+                        </span>
                     </a>
-                    <span class="font-black text-gray-800 text-lg ml-2">
-                        RFID Vehicle Gate Pass
-                    </span>
                 </div>
 
                 <!-- Navigation Links -->
@@ -59,13 +59,13 @@
                     </x-nav-link>
                 </div>
                 @endrole --}}
-                @role('admin')
+                {{-- @role('admin')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="/courses" :active="request()->routeIs('courses')">
                         {{ __('Courses') }}
                     </x-nav-link>
                 </div>
-                @endrole
+                @endrole --}}
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="/logs" :active="request()->routeIs('logs')">
                         {{ __('Logs') }}
@@ -111,6 +111,11 @@
                             <x-dropdown-link href="/vehicle-types" class="flex items-center text-gray-700">
                                 <span>
                                     {{ __('Vehicle Types') }}
+                                </span>
+                            </x-dropdown-link>
+                            <x-dropdown-link href="/courses" class="flex items-center text-gray-700">
+                                <span>
+                                    {{ __('Courses') }}
                                 </span>
                             </x-dropdown-link>
                             <x-dropdown-link href="/log-types" class="flex items-center text-gray-700">

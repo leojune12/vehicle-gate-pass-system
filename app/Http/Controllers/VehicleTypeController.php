@@ -43,7 +43,7 @@ class VehicleTypeController extends Controller
             'vehicle_type' => $request->vehicle_type
         ]);
 
-        return redirect('/vehicle-types');
+        return redirect('/vehicle-types')->with('status', 'Vehicle type successfuly added');
     }
 
     /**
@@ -87,7 +87,7 @@ class VehicleTypeController extends Controller
             'vehicle_type' => $request->vehicle_type
         ]);
 
-        return redirect('/vehicle-types');
+        return redirect('/vehicle-types')->with('status', 'Vehicle type successfuly updated');
     }
 
     /**

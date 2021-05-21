@@ -85,7 +85,7 @@ class DriverController extends Controller
             'photo' => $photo_path
         ])->save();
 
-        return redirect('/drivers');
+        return redirect('/drivers')->with('status', 'Driver successfuly added');
     }
 
     /**
@@ -166,7 +166,7 @@ class DriverController extends Controller
             'photo' => $photo_path
         ])->save();
 
-        return redirect('/drivers');
+        return redirect('/drivers')->with('status', 'Driver successfuly updated');
     }
 
     /**

@@ -76,7 +76,7 @@ class UserController extends Controller
 
         $user->assignRole($request->user_role);
 
-        return redirect('/users');
+        return redirect('/users')->with('status', 'User successfuly added');
     }
 
     /**
@@ -164,7 +164,7 @@ class UserController extends Controller
 
         $user->syncRoles($request->user_role);
 
-        return redirect('/users');
+        return redirect('/users')->with('status', 'User successfuly update');
     }
 
     /**
@@ -227,6 +227,6 @@ class UserController extends Controller
             'password' => Hash::make($request['new_password']),
         ])->save();
 
-        return redirect('/users');
+        return redirect('/users')->with('status', 'User password successfuly changed');
     }
 }

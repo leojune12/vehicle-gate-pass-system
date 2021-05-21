@@ -41,7 +41,7 @@ class CourseController extends Controller
     {
         Course::create($request->toArray());
 
-        return redirect('/courses');
+        return redirect('/courses')->with('status', 'Course successfuly added');
     }
 
     /**
@@ -79,7 +79,7 @@ class CourseController extends Controller
     {
         $course->update($request->all());
 
-        return redirect('/courses');
+        return redirect('/courses')->with('status', 'Course successfuly updated');
     }
 
     /**
