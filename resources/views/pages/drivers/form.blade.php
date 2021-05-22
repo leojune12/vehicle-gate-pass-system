@@ -32,6 +32,18 @@
                             <div class="shadow overflow-hidden sm:rounded-md">
                             <div class="px-4 py-5 bg-white sm:p-6">
                                 <div class="grid grid-cols-6 gap-6">
+
+                                    <div class="col-span-6 sm:col-span-3">
+                                        <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                                        <input type="text" name="name" id="name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" required autofocus
+                                        @if (old('name') != null)
+                                            value="{{ old('name') }}"
+                                        @else
+                                            value="{{ isset($driver) ? $driver->name : "" }}"
+                                        @endif
+                                        >
+                                    </div>
+
                                     <div class="col-span-6 sm:col-span-3">
                                         <label for="rfid" class="block text-sm font-medium text-gray-700">RFID</label>
                                         <input type="text" name="rfid" id="rfid" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" required
@@ -39,17 +51,6 @@
                                             value="{{ old('rfid') }}"
                                         @else
                                             value="{{ isset($driver) ? $driver->rfid :  "" }}"
-                                        @endif
-                                        >
-                                    </div>
-
-                                    <div class="col-span-6 sm:col-span-3">
-                                        <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-                                        <input type="text" name="name" id="name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" required
-                                        @if (old('name') != null)
-                                            value="{{ old('name') }}"
-                                        @else
-                                            value="{{ isset($driver) ? $driver->name : "" }}"
                                         @endif
                                         >
                                     </div>

@@ -30,7 +30,7 @@
                                 <div class="grid grid-cols-6 gap-6">
                                     <div class="col-span-6 sm:col-span-3">
                                         <label for="log_type" class="block text-sm font-medium text-gray-700">Log Type</label>
-                                        <input type="text" name="log_type" id="log_type" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{ isset($log_type) ? $log_type->log_type : "" }}" required>
+                                        <input type="text" name="log_type" id="log_type" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="{{ isset($log_type) ? $log_type->log_type : "" }}" required autofocus>
                                     </div>
                                 </div>
                             </div>
