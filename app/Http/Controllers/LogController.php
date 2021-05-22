@@ -6,6 +6,7 @@ use App\Exports\LogsExport;
 use App\Models\Driver;
 use App\Models\Log;
 use App\Models\LogType;
+use DateTime;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -21,11 +22,26 @@ class LogController extends Controller
         $name = isset($request->name) ? $request->name : '';
         $log_type_id = isset($request->log_type_id) ? $request->log_type_id : '';
         $start_date = isset($request->start_date) ? $request->start_date : '';
-        $end_date = isset($request->end_date) ? $request->end_date : '';
+
+        if (isset($request->end_date)) {
+
+            $end_date = new DateTime($request->end_date);
+
+            $end_date->modify('+1 day')->format('Y-m-d');
+
+            $real_end_date = $request->end_date;
+
+        } else {
+            $end_date = new DateTime();
+
+            $end_date->modify('+1 day')->format('Y-m-d');
+
+            $real_end_date = '';
+        }
 
         $ids = Driver::where('name', 'like', !empty($name) ? '%' . $name . '%' : '%%')->pluck('id');
 
-        $logs = Log::whereIn('driver_id', $ids)->where('log_type_id', 'like', '%' . !empty($log_type_id) ? '%' . $log_type_id . '%' : '%%')->where('time', '>', $start_date)->where('time', '<', !empty($end_date) ? $end_date : date('Y-m-d'))->latest()->paginate(10);
+        $logs = Log::whereIn('driver_id', $ids)->where('log_type_id', 'like', '%' . !empty($log_type_id) ? '%' . $log_type_id . '%' : '%%')->where('time', '>', $start_date)->where('time', '<', $end_date)->latest()->paginate(10);
 
         $log_types = LogType::latest()->get();
 
@@ -35,7 +51,7 @@ class LogController extends Controller
             'name' => $name,
             'log_type_id' => $log_type_id,
             'start_date' => $start_date,
-            'end_date' => $end_date
+            'end_date' => $real_end_date
         ]);
     }
 
