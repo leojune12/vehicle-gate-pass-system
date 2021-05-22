@@ -24,8 +24,6 @@ Route::middleware(['auth', 'role:admin|guest'])->group(function () {
 
     Route::get('/drivers', [DriverController::class, 'index'])->name('drivers');
 
-    // Route::resource('logs', LogController::class);
-
     Route::get('/logs', [LogController::class, 'index'])->name('logs');
 
     Route::get('/logs/filter', [LogController::class, 'filter'])->name('logs-filter');
@@ -35,6 +33,8 @@ Route::middleware(['auth', 'role:admin|guest'])->group(function () {
     Route::get('/drivers/show-logs/{driver}', [DriverController::class, 'show']);
 
     Route::get('/drivers/show-driver/{id}', [DriverController::class, 'show_driver']);
+
+    Route::resource('change-password', ChangePasswordController::class);
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
@@ -70,8 +70,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('user-types', UserTypeController::class);
 
     Route::get('/user-types', [UserTypeController::class, 'index'])->name('user-types');
-
-    Route::resource('change-password', ChangePasswordController::class);
 
     Route::post('delete-user-photo/{id}', [UserController::class, 'delete_photo']);
 
