@@ -41,7 +41,7 @@ class DriverTypeController extends Controller
     {
         DriverType::create($request->toArray());
 
-        return redirect('/driver-types')->with('status', 'Driver type successfuly added');
+        return redirect('/driver-types')->with('status', 'Driver type successfully added');
     }
 
     /**
@@ -83,7 +83,7 @@ class DriverTypeController extends Controller
 
         $driver_type->update($request->toArray());
 
-        return redirect('/driver-types')->with('status', 'Driver type successfuly updated');
+        return redirect('/driver-types')->with('status', 'Driver type successfully updated');
     }
 
     /**
@@ -98,6 +98,6 @@ class DriverTypeController extends Controller
 
         $driver_type->delete();
 
-        return redirect('/driver-types');
+        return redirect('/driver-types')->with('status', 'Driver type successfully deleted');
     }
 }

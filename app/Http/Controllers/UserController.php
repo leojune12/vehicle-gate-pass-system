@@ -76,7 +76,7 @@ class UserController extends Controller
 
         $user->assignRole($request->user_role);
 
-        return redirect('/users')->with('status', 'User successfuly added');
+        return redirect('/users')->with('status', 'User successfully added');
     }
 
     /**
@@ -164,7 +164,7 @@ class UserController extends Controller
 
         $user->syncRoles($request->user_role);
 
-        return redirect('/users')->with('status', 'User successfuly update');
+        return redirect('/users')->with('status', 'User successfully update');
     }
 
     /**
@@ -181,7 +181,7 @@ class UserController extends Controller
 
         $user->delete();
 
-        return redirect('/users');
+        return redirect('/users')->with('status', 'User successfully deleted');
     }
 
     public function delete_photo($id)

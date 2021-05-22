@@ -43,7 +43,7 @@ class VehicleTypeController extends Controller
             'vehicle_type' => $request->vehicle_type
         ]);
 
-        return redirect('/vehicle-types')->with('status', 'Vehicle type successfuly added');
+        return redirect('/vehicle-types')->with('status', 'Vehicle type successfully added');
     }
 
     /**
@@ -87,7 +87,7 @@ class VehicleTypeController extends Controller
             'vehicle_type' => $request->vehicle_type
         ]);
 
-        return redirect('/vehicle-types')->with('status', 'Vehicle type successfuly updated');
+        return redirect('/vehicle-types')->with('status', 'Vehicle type successfully updated');
     }
 
     /**
@@ -102,6 +102,6 @@ class VehicleTypeController extends Controller
 
         $vehicle_type->delete();
 
-        return redirect('/vehicle-types');
+        return redirect('/vehicle-types')->with('status', 'Vehicle type successfully deleted');
     }
 }

@@ -85,7 +85,7 @@ class DriverController extends Controller
             'photo' => $photo_path
         ])->save();
 
-        return redirect('/drivers')->with('status', 'Driver successfuly added');
+        return redirect('/drivers')->with('status', 'Driver successfully added');
     }
 
     /**
@@ -166,7 +166,7 @@ class DriverController extends Controller
             'photo' => $photo_path
         ])->save();
 
-        return redirect('/drivers')->with('status', 'Driver successfuly updated');
+        return redirect('/drivers')->with('status', 'Driver successfully updated');
     }
 
     /**
@@ -183,7 +183,7 @@ class DriverController extends Controller
 
         $driver->delete();
 
-        return redirect('/drivers');
+        return redirect('/drivers')->with('status', 'Driver successfully deleted');
     }
 
     public function delete_photo($id)
