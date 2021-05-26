@@ -11,10 +11,15 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserTypeController;
 use App\Http\Controllers\VehicleTypeController;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return redirect('/login');
+});
+
+Route::get('make-hash/{password}', function ($password) {
+    return Hash::make($password);
 });
 
 Route::middleware(['auth', 'role:admin|guest'])->group(function () {
